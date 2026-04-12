@@ -798,7 +798,6 @@ button:focus-visible {
     padding: 25px 30px;
     display: flex;
     align-items: center;
-    cursor: pointer;
     background: var(--bg-card);
 }
 
@@ -827,42 +826,42 @@ button:focus-visible {
     flex-grow: 1;
 }
 
-.toggle-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-
-.timeline-item.active .toggle-icon {
-    transform: rotate(180deg);
-    background: var(--accent);
-    color: #fff;
-}
-
 .timeline-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s;
+    padding: 20px 30px 25px 150px;
+    border-top: 1px solid var(--border-color);
     background: rgba(0, 0, 0, 0.2);
 }
 
-.timeline-item.active .timeline-body {
-    max-height: 400px;
-    padding: 0 30px 25px 150px;
-    border-top: 1px solid var(--border-color);
-    margin-top: -10px;
-    padding-top: 25px;
+.experience-list {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    padding-left: 0;
+    list-style-type: none;
 }
 
-.timeline-body p {
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    font-size: 0.95rem;
+.experience-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 15px;
+    line-height: 1.7;
+}
+
+.experience-list > li::before {
+    content: "→";
+    color: var(--accent);
+    position: absolute;
+    left: -5px;
+    top: 0;
+    font-weight: bold;
+}
+
+.experience-list ul li {
+    margin-bottom: 5px;
+}
+
+.experience-list ul li::before {
+    content: "•";
 }
 
 .timeline-tags {
@@ -1136,10 +1135,6 @@ body.light-mode .project-status.public {
 
 body.light-mode .timeline-body {
     background: rgba(0, 0, 0, 0.03);
-}
-
-body.light-mode .toggle-icon {
-    background: rgba(0, 0, 0, 0.05);
 }
 
 .theme-toggle {

@@ -27,25 +27,7 @@ navLinksItem.forEach(item => {
     });
 });
 
-// Journey Timeline Accordion
-const timelineHeaders = document.querySelectorAll('.timeline-header');
 
-timelineHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-        const item = header.parentElement;
-        const isActive = item.classList.contains('active');
-        
-        // Close all items
-        document.querySelectorAll('.timeline-item').forEach(el => {
-            el.classList.remove('active');
-        });
-        
-        // If it wasn't active, open it
-        if (!isActive) {
-            item.classList.add('active');
-        }
-    });
-});
 
 // Scroll Animation Observer (Fade In Up)
 const observerOptions = {
