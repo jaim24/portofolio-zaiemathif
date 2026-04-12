@@ -7,15 +7,16 @@
     --bg-card-hover: #18181b;
     --border-color: #27272a;
     --text-main: #f8fafc;
-    --text-muted: #a1a1aa;
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --accent-glow: rgba(59, 130, 246, 0.5);
+    --text-muted: #b0b0b8;
+    --accent: #60a5fa;
+    --accent-hover: #3b82f6;
+    --accent-glow: rgba(96, 165, 250, 0.5);
     
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
     
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.6);
 }
 
 * {
@@ -29,13 +30,36 @@ html {
     scroll-padding-top: 80px;
 }
 
+/* WCAG: Skip navigation link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 0 0 8px 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    z-index: 10000;
+    text-decoration: none;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 body {
     font-family: var(--font-body);
     background-color: var(--bg-dark);
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -153,10 +177,23 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--accent);
     font-family: var(--font-body);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 8px;
+}
+
+/* WCAG: Focus-visible outlines for keyboard navigation */
+a:focus-visible,
+button:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: 4px;
+}
+
+.btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
 }
 
 .section-title {
@@ -211,7 +248,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 8px 20px;
 }
 .btn-outline:hover {
-    background: rgba(59, 130, 246, 0.1);
+    background: var(--accent-glow);
 }
 
 .btn-large {
@@ -220,10 +257,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-glow {
-    background: rgba(59, 130, 246, 0.1);
+    background: var(--accent-glow);
     color: var(--accent);
-    border: 1px solid rgba(59, 130, 246, 0.4);
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -662,20 +699,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-status {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding: 4px 12px;
     border-radius: 20px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .project-status.private {
-    background: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
 }
 
 .project-status.public {
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
 }
 
 .project-name {
@@ -747,7 +784,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .timeline-meta .type {
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -803,7 +840,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .timeline-tags span {
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     color: var(--text-muted);
     background: var(--bg-dark);
     padding: 4px 12px;
@@ -1052,6 +1089,25 @@ body.light-mode {
     --accent: #2563eb;
     --accent-hover: #1d4ed8;
     --accent-glow: rgba(37, 99, 235, 0.2);
+    --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.4);
+}
+
+body.light-mode .project-status.private {
+    background: rgba(245, 158, 11, 0.12);
+    color: #b45309;
+}
+
+body.light-mode .project-status.public {
+    background: rgba(16, 185, 129, 0.12);
+    color: #047857;
+}
+
+body.light-mode .timeline-body {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-mode .toggle-icon {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .theme-toggle {

@@ -42,8 +42,11 @@
 </head>
 
 <body>
+    <!-- WCAG: Skip to main content link -->
+    <a href="#home" class="skip-link">Skip to main content</a>
+
     <!-- Noise Overlay for Premium Aesthetic -->
-    <div class="noise-overlay"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
 
     <!-- Grid Background & Aesthetic Ornaments -->
     <div class="grid-bg"></div>
@@ -52,7 +55,7 @@
     <div class="ornament shape-3"></div>
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main Navigation">
         <div class="nav-container">
             <a href="#" class="logo">ZA<span>.</span></a>
             <ul class="nav-links">
@@ -89,7 +92,7 @@
         <div class="container hero-container animate-on-scroll">
             <div class="hero-content">
                 <p class="greeting">Hi, I'm</p>
-                <h1 class="glitch-text" data-text="Zaiem Athif">Zaiem Athif Syafiullah anjay</h1>
+                <h1 class="glitch-text" data-text="Zaiem Athif">Zaiem Athif Syafiullah</h1>
                 <h2 class="role">Information Systems Graduate & IT Enthusiast.</h2>
                 <p class="hero-desc">
                     Fresh Graduate from Universitas Negeri Gorontalo focusing on web-based system development, database
