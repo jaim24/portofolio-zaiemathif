@@ -135,17 +135,22 @@ body {
 
 .glow-effect {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    background: var(--accent);
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.2;
-    z-index: -1;
+    width: 320px;
+    height: 400px;
+    background: radial-gradient(circle at center, var(--accent) 0%, transparent 70%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: pulse 4s infinite alternate;
+    opacity: 0.2;
+    filter: blur(60px);
+    z-index: -1;
+    animation: glow-rotate 10s infinite linear;
+}
+
+@keyframes glow-rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
 }
 
 .noise-overlay {
@@ -423,22 +428,33 @@ button:focus-visible {
 
 .image-wrapper {
     position: relative;
-    border-radius: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 40px 100px 40px 100px;
+    transition: var(--transition);
+}
+
+.image-wrapper:hover {
+    border-color: rgba(96, 165, 250, 0.3);
+    box-shadow: 0 0 30px rgba(96, 165, 250, 0.1);
 }
 
 .profile-pic {
     width: 320px;
     height: 400px;
     object-fit: cover;
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
+    border-radius: 35px 95px 35px 95px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    filter: grayscale(20%) contrast(1.1);
+    filter: grayscale(10%) contrast(1.1);
     transition: var(--transition);
 }
 
 .profile-pic:hover {
     filter: grayscale(0%) contrast(1);
+    transform: scale(1.02);
 }
 
 .tech-badge {
@@ -1209,8 +1225,15 @@ body.light-mode .navbar {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+body.light-mode .image-wrapper {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
 body.light-mode .profile-pic {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.05);
 }
 
 body.light-mode .tech-badge {
