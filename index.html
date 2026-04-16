@@ -237,19 +237,19 @@
     </section>
 
     <!-- Education Section -->
-    <section class="education" id="education">
-        <div class="container">
+    <section class="py-20 md:py-[100px]" id="education">
+        <div class="max-w-[1100px] mx-auto px-6">
             <div class="section-header animate-on-scroll">
                 <p class="section-subtitle" data-i18n="edu.subtitle">02. Academic Background</p>
                 <h2 class="section-title" data-i18n="edu.title">Education</h2>
             </div>
 
-            <div class="edu-grid">
-                <div class="edu-card animate-on-scroll">
-                    <div class="edu-year" data-i18n="edu.year">2019 - 2025</div>
-                    <h3 class="edu-degree" data-i18n="edu.degree">S1 - Information Systems</h3>
-                    <h4 class="edu-school" data-i18n="edu.school">Gorontalo State University, Kota Gorontalo</h4>
-                    <p class="edu-desc" data-i18n="edu.desc">Graduated with a GPA of 3.59. Acquired strong foundations
+            <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-[30px]">
+                <div class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] p-[35px] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.05)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
+                    <div class="inline-block font-heading text-[var(--accent)] bg-blue-500/10 py-1.5 px-3.5 rounded-full text-[0.85rem] mb-5 font-semibold" data-i18n="edu.year">2019 - 2025</div>
+                    <h3 class="text-[1.4rem] mb-2 text-[var(--text-main)] font-heading font-bold" data-i18n="edu.degree">S1 - Information Systems</h3>
+                    <h4 class="text-[1.1rem] text-[var(--text-muted)] font-normal mb-5 font-heading" data-i18n="edu.school">Gorontalo State University, Kota Gorontalo</h4>
+                    <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7]" data-i18n="edu.desc">Graduated with a GPA of 3.59. Acquired strong foundations
                         in system analysis,
                         database management, and technical implementations.</p>
                 </div>
@@ -258,70 +258,70 @@
     </section>
 
     <!-- Works Section -->
-    <section class="works" id="works">
-        <div class="container">
+    <section class="py-20 md:py-[100px]" id="works">
+        <div class="max-w-[1100px] mx-auto px-6">
             <div class="section-header animate-on-scroll">
                 <p class="section-subtitle" data-i18n="works.subtitle">03. Selected Works</p>
                 <h2 class="section-title" data-i18n="works.title">Things I've Built</h2>
             </div>
-            <p class="works-desc animate-on-scroll" data-i18n="works.desc">A showcase of functional web solutions
+            <p class="text-[var(--text-muted)] text-[1.1rem] mb-[50px] max-w-[600px] animate-on-scroll" data-i18n="works.desc">A showcase of functional web solutions
                 focused on data accuracy,
                 automation, and user experience.</p>
 
-            <div class="works-grid">
+            <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-[30px]">
 
                 <!-- Project 1 -->
-                <div class="project-card animate-on-scroll">
-                    <div class="project-image-wrapper browser-mockup">
-                        <div class="browser-header">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
+                <div class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100">
+                    <div class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
+                        <div class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
                         </div>
-                        <img src="project1.jpg" alt="DisabilityCare GIS Platform" class="project-img">
+                        <img src="project1.jpg" alt="DisabilityCare GIS Platform" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="project-content">
-                        <div class="project-top">
-                            <span class="project-type" data-i18n="project1.type">GIS Web App</span>
-                            <span class="project-status public" data-i18n="project1.status">Featured Project</span>
+                    <div class="p-[35px]">
+                        <div class="flex justify-between items-center mb-[20px]">
+                            <span class="text-[0.85rem] text-[var(--accent)] font-heading tracking-[0.05em] uppercase" data-i18n="project1.type">GIS Web App</span>
+                            <span class="text-[0.8rem] py-1 px-3 rounded-full font-bold bg-emerald-400/15 text-emerald-400" data-i18n="project1.status">Featured Project</span>
                         </div>
-                        <h3 class="project-name" data-i18n="project1.name">DisabilityCare - GIS Platform</h3>
-                        <p class="project-detail" data-i18n="project1.detail">A Geographic Information System (GIS) and
+                        <h3 class="text-[1.6rem] mb-[15px] font-heading font-bold text-[var(--text-main)]" data-i18n="project1.name">DisabilityCare - GIS Platform</h3>
+                        <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7] mb-[25px]" data-i18n="project1.detail">A Geographic Information System (GIS) and
                             data management platform
                             that enables volunteers and admins to track, map locations, and intelligently manage
                             targeted aid distribution for people with disabilities across Gorontalo City.</p>
-                        <div class="project-tech">
-                            <span><i class="devicon-laravel-original colored"></i> Laravel</span>
-                            <span><i class="devicon-mysql-plain colored"></i> MySQL</span>
-                            <span><i class="devicon-tailwindcss-original colored"></i> Tailwind</span>
+                        <div class="flex flex-wrap gap-4 font-heading text-[0.85rem] text-[var(--text-muted)]">
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-laravel-original colored text-[1.15em]"></i> Laravel</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-mysql-plain colored text-[1.15em]"></i> MySQL</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-tailwindcss-original colored text-[1.15em]"></i> Tailwind</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card animate-on-scroll" style="transition-delay: 0.1s">
-                    <div class="project-image-wrapper browser-mockup">
-                        <div class="browser-header">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
+                <div class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100" style="transition-delay: 0.1s">
+                    <div class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
+                        <div class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
                         </div>
-                        <img src="project2.jpg" alt="PAUD Damhil DWP UNG School Profile" class="project-img">
+                        <img src="project2.jpg" alt="PAUD Damhil DWP UNG School Profile" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-                    <div class="project-content">
-                        <div class="project-top">
-                            <span class="project-type" data-i18n="project2.type">Official Website</span>
-                            <span class="project-status public" data-i18n="project2.status">Live Project</span>
+                    <div class="p-[35px]">
+                        <div class="flex justify-between items-center mb-[20px]">
+                            <span class="text-[0.85rem] text-[var(--accent)] font-heading tracking-[0.05em] uppercase" data-i18n="project2.type">Official Website</span>
+                            <span class="text-[0.8rem] py-1 px-3 rounded-full font-bold bg-emerald-400/15 text-emerald-400" data-i18n="project2.status">Live Project</span>
                         </div>
-                        <h3 class="project-name" data-i18n="project2.name">PAUD Damhil DWP UNG</h3>
-                        <p class="project-detail" data-i18n="project2.detail">A comprehensive school profile website
+                        <h3 class="text-[1.6rem] mb-[15px] font-heading font-bold text-[var(--text-main)]" data-i18n="project2.name">PAUD Damhil DWP UNG</h3>
+                        <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7] mb-[25px]" data-i18n="project2.detail">A comprehensive school profile website
                             designed specifically for PAUD Damhil DWP Universitas Negeri Gorontalo. Built to serve as a
                             digital hub that improves institutional transparency, showcases active academic programs,
                             and boosts parental engagement.</p>
-                        <div class="project-tech">
-                            <span><i class="devicon-html5-plain colored"></i> HTML5</span>
-                            <span><i class="devicon-css3-plain colored"></i> CSS3</span>
-                            <span><i class="devicon-javascript-plain colored"></i> Vanilla JS</span>
+                        <div class="flex flex-wrap gap-4 font-heading text-[0.85rem] text-[var(--text-muted)]">
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-html5-plain colored text-[1.15em]"></i> HTML5</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-css3-plain colored text-[1.15em]"></i> CSS3</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-javascript-plain colored text-[1.15em]"></i> JavaScript</span>
                         </div>
                     </div>
                 </div>
