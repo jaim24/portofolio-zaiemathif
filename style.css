@@ -73,19 +73,19 @@ body {
    BACKGROUND & EFFECTS
    ========================================= */
 .grid-bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 120vh;
+    height: 100vh;
     background-image: 
         linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 50px 50px;
-    z-index: -1;
+    z-index: -3;
     pointer-events: none;
-    mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+    mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
     max-width: 100%;
 }
 
@@ -126,6 +126,46 @@ body {
     left: 10%;
     animation-delay: -10s;
     opacity: 0.15;
+}
+
+.shape-4 {
+    width: 500px;
+    height: 500px;
+    background: #f43f5e; /* Rose hue */
+    top: 2900px;
+    right: 5%;
+    animation-delay: -7s;
+    opacity: 0.15;
+}
+
+.shape-5 {
+    width: 450px;
+    height: 450px;
+    background: #3b82f6; /* Blue hue */
+    top: 4000px;
+    left: -5%;
+    animation-delay: -2s;
+    opacity: 0.2;
+}
+
+.shape-4 {
+    width: 500px;
+    height: 500px;
+    background: #f43f5e; /* Rose hue */
+    top: 2900px;
+    right: 5%;
+    animation-delay: -7s;
+    opacity: 0.15;
+}
+
+.shape-5 {
+    width: 450px;
+    height: 450px;
+    background: #3b82f6; /* Blue hue */
+    top: 4000px;
+    left: -5%;
+    animation-delay: -2s;
+    opacity: 0.2;
 }
 
 @keyframes drift {
