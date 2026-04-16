@@ -389,6 +389,12 @@ body.light-mode .lang-toggle {
     color: var(--accent);
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .hamburger {
     display: none;
     cursor: pointer;
