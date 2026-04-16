@@ -60,9 +60,20 @@
     </script>
     <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Alpine.js Plugins & Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body>
+<body x-data="{ 
+    theme: localStorage.getItem('theme') || 'dark', 
+    scrolled: false, 
+    mobileMenuOpen: false 
+}" 
+x-init="$watch('theme', val => localStorage.setItem('theme', val))"
+@scroll.window="scrolled = (window.pageYOffset > 50)"
+:class="theme === 'light' ? 'light-mode' : ''">
     <div class="overflow-x-hidden w-full relative min-h-screen">
         <!-- WCAG: Skip to main content link -->
         <a href="#home" class="skip-link">Skip to main content</a>
@@ -77,7 +88,7 @@
     <div class="ornament shape-3"></div>
 
     <!-- Navigation -->
-    <nav class="navbar w-full max-w-full" aria-label="Main Navigation">
+    <nav class="navbar w-full max-w-full" :class="{ 'scrolled': scrolled }" aria-label="Main Navigation">
         <div class="w-full max-w-[1100px] mx-auto px-4 sm:px-6 flex items-center justify-between">
             <!-- Logo -->
             <a href="#" class="logo shrink-0" aria-label="Zaiem Athif - Home">
@@ -85,20 +96,20 @@
             </a>
 
             <!-- Desktop Nav Links -->
-            <ul class="nav-links hidden md:flex items-center gap-5 lg:gap-7 list-none">
+            <ul class="nav-links hidden md:flex items-center gap-5 lg:gap-7 list-none" :class="{ 'active': mobileMenuOpen }">
                 <li><a href="#about"
                         class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
-                        data-i18n="nav.about">About</a></li>
+                        data-i18n="nav.about" @click="mobileMenuOpen = false">About</a></li>
                 <li><a href="#education"
                         class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
-                        data-i18n="nav.education">Education</a></li>
+                        data-i18n="nav.education" @click="mobileMenuOpen = false">Education</a></li>
                 <li><a href="#works"
                         class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
-                        data-i18n="nav.works">Works</a></li>
+                        data-i18n="nav.works" @click="mobileMenuOpen = false">Works</a></li>
                 <li><a href="#journey"
                         class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
-                        data-i18n="nav.journey">Journey</a></li>
-                <li><a href="#contact" class="btn btn-outline" data-i18n="nav.contact">Contact</a></li>
+                        data-i18n="nav.journey" @click="mobileMenuOpen = false">Journey</a></li>
+                <li><a href="#contact" class="btn btn-outline" data-i18n="nav.contact" @click="mobileMenuOpen = false">Contact</a></li>
             </ul>
 
             <!-- Actions: Lang + Theme + Hamburger -->
@@ -115,7 +126,7 @@
                 </div>
 
                 <!-- Theme Toggle -->
-                <button class="theme-toggle shrink-0" id="theme-toggle" aria-label="Toggle Theme">
+                <button class="theme-toggle shrink-0" id="theme-toggle" aria-label="Toggle Theme" @click="theme = theme === 'dark' ? 'light' : 'dark'">
                     <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path
                             d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
@@ -128,7 +139,7 @@
                 </button>
 
                 <!-- Hamburger (Mobile) -->
-                <div class="hamburger md:hidden cursor-pointer z-[1001] shrink-0">
+                <div class="hamburger md:hidden cursor-pointer z-[1001] shrink-0" :class="{ 'active': mobileMenuOpen }" @click="mobileMenuOpen = !mobileMenuOpen">
                     <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
                     <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
                     <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
@@ -139,7 +150,7 @@
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center pt-[80px]" id="home">
-        <div class="max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-[60px] items-center text-center lg:text-left animate-on-scroll">
+        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-[60px] items-center text-center lg:text-left animate-on-scroll">
             <div class="hero-content">
                 <p class="text-[var(--accent)] text-[1.1rem] font-medium mb-[10px] font-heading" data-i18n="hero.greeting">Hi, I'm</p>
                 <h1 class="text-[2.2rem] md:text-[3.5rem] leading-[1.2] mb-[5px] tracking-[-0.02em] font-extrabold bg-gradient-to-br from-[var(--text-main)] to-[var(--accent)] text-transparent bg-clip-text">Zaiem Athif Syafiullah, S.Kom</h1>
@@ -183,11 +194,11 @@
     <!-- About Section -->
     <section class="py-20 md:py-[100px]" id="about">
         <div class="max-w-[1100px] mx-auto px-6">
-            <div class="section-header animate-on-scroll">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="section-header animate-on-scroll">
                 <p class="section-subtitle" data-i18n="about.subtitle">01. About Me</p>
                 <h2 class="section-title" data-i18n="about.title">My Focus & Expertise</h2>
             </div>
-            <div class="grid grid-cols-1 gap-10 animate-on-scroll">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="grid grid-cols-1 gap-10 animate-on-scroll">
                 <div class="about-text">
                     <p class="text-[1.1rem] text-[var(--text-muted)] mb-5 max-w-[800px] leading-relaxed" data-i18n="about.p1">I am a Fresh Graduate with a Bachelor's degree in Information Systems from
                         Universitas Negeri
@@ -239,13 +250,13 @@
     <!-- Education Section -->
     <section class="py-20 md:py-[100px]" id="education">
         <div class="max-w-[1100px] mx-auto px-6">
-            <div class="section-header animate-on-scroll">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="section-header animate-on-scroll">
                 <p class="section-subtitle" data-i18n="edu.subtitle">02. Academic Background</p>
                 <h2 class="section-title" data-i18n="edu.title">Education</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-[30px]">
-                <div class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] p-[35px] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.05)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
+                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] p-[35px] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.05)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
                     <div class="inline-block font-heading text-[var(--accent)] bg-blue-500/10 py-1.5 px-3.5 rounded-full text-[0.85rem] mb-5 font-semibold" data-i18n="edu.year">2019 - 2025</div>
                     <h3 class="text-[1.4rem] mb-2 text-[var(--text-main)] font-heading font-bold" data-i18n="edu.degree">S1 - Information Systems</h3>
                     <h4 class="text-[1.1rem] text-[var(--text-muted)] font-normal mb-5 font-heading" data-i18n="edu.school">Gorontalo State University, Kota Gorontalo</h4>
@@ -260,18 +271,18 @@
     <!-- Works Section -->
     <section class="py-20 md:py-[100px]" id="works">
         <div class="max-w-[1100px] mx-auto px-6">
-            <div class="section-header animate-on-scroll">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="section-header animate-on-scroll">
                 <p class="section-subtitle" data-i18n="works.subtitle">03. Selected Works</p>
                 <h2 class="section-title" data-i18n="works.title">Things I've Built</h2>
             </div>
-            <p class="text-[var(--text-muted)] text-[1.1rem] mb-[50px] max-w-[600px] animate-on-scroll" data-i18n="works.desc">A showcase of functional web solutions
+            <p x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="text-[var(--text-muted)] text-[1.1rem] mb-[50px] max-w-[600px] animate-on-scroll" data-i18n="works.desc">A showcase of functional web solutions
                 focused on data accuracy,
                 automation, and user experience.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-[30px]">
 
                 <!-- Project 1 -->
-                <div class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100">
+                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100">
                     <div class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
                         <div class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
                             <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
@@ -299,7 +310,7 @@
                 </div>
 
                 <!-- Project 2 -->
-                <div class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100" style="transition-delay: 0.1s">
+                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100" style="transition-delay: 0.1s">
                     <div class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
                         <div class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
                             <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
@@ -333,12 +344,12 @@
     <!-- Journey Section -->
     <section class="py-20 md:py-[100px]" id="journey">
         <div class="max-w-[1100px] mx-auto px-6">
-            <div class="section-header animate-on-scroll">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="section-header animate-on-scroll">
                 <p class="section-subtitle" data-i18n="journey.subtitle">04. Experience</p>
                 <h2 class="section-title" data-i18n="journey.title">My Journey</h2>
             </div>
 
-            <div class="flex flex-col gap-5 max-w-[800px] animate-on-scroll">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="flex flex-col gap-5 max-w-[800px] animate-on-scroll">
                 <!-- Item 1 -->
                 <div class="group bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden relative transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] [.light-mode_&]:border-[#e2e8f0] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
                     <div class="p-5 md:py-[25px] md:px-[30px] flex flex-col md:flex-row md:items-center bg-[var(--bg-card)] gap-2.5 md:gap-0">
@@ -423,7 +434,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="py-[80px] md:py-[120px] text-center animate-on-scroll" id="contact">
+    <section x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="py-[80px] md:py-[120px] text-center animate-on-scroll" id="contact">
         <div class="max-w-[600px] mx-auto px-6">
             <p class="section-subtitle" data-i18n="contact.subtitle">05. What's Next?</p>
             <h2 class="text-[2rem] md:text-[3rem] font-heading font-bold mb-[20px]" data-i18n="contact.title">Let's Build Something Great</h2>
@@ -456,7 +467,7 @@
     <!-- Footer -->
     <footer class="py-[40px] border-t border-[var(--border-color)] text-center [.light-mode_&]:border-[#e2e8f0]">
         <div class="flex flex-col gap-[15px] items-center mx-auto max-w-[1100px] px-6">
-            <div class="flex gap-[20px] mb-[20px] animate-on-scroll">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="flex gap-[20px] mb-[20px] animate-on-scroll">
                 <a href="https://linkedin.com/in/" class="text-[var(--text-muted)] transition-all flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white/[0.03] border border-[var(--border-color)] hover:text-blue-500 hover:-translate-y-1 hover:bg-blue-500/10 hover:border-blue-500/40 hover:shadow-[0_10px_20px_rgba(59,130,246,0.2)] [.light-mode_&]:bg-black/[0.03] [.light-mode_&]:border-[#e2e8f0] [.light-mode_&]:hover:bg-blue-500/10 [.light-mode_&]:hover:border-blue-500/30 [.light-mode_&]:hover:shadow-[0_10px_20px_rgba(59,130,246,0.12)]" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -490,7 +501,6 @@
     </div>
     <!-- Main JS -->
     <script src="lang.js"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>
