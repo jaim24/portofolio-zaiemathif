@@ -70,15 +70,15 @@
     <div class="ornament shape-3"></div>
 
     <!-- Navigation -->
-    <nav class="navbar" aria-label="Main Navigation">
-        <div class="max-w-[1100px] mx-auto px-6 flex items-center justify-between">
+    <nav class="navbar w-full max-w-full" aria-label="Main Navigation">
+        <div class="w-full max-w-[1100px] mx-auto px-4 sm:px-6 flex items-center justify-between">
             <!-- Logo -->
-            <a href="#" class="logo" aria-label="Zaiem Athif - Home">
+            <a href="#" class="logo shrink-0" aria-label="Zaiem Athif - Home">
                 <span class="logo-text">ZA.</span>
             </a>
 
             <!-- Desktop Nav Links -->
-            <ul class="nav-links hidden md:flex items-center gap-7 list-none">
+            <ul class="nav-links hidden md:flex items-center gap-5 lg:gap-7 list-none">
                 <li><a href="#about" class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline" data-i18n="nav.about">About</a></li>
                 <li><a href="#education" class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline" data-i18n="nav.education">Education</a></li>
                 <li><a href="#works" class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline" data-i18n="nav.works">Works</a></li>
@@ -87,15 +87,15 @@
             </ul>
 
             <!-- Actions: Lang + Theme + Hamburger -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <!-- Language Toggle -->
                 <div class="lang-toggle flex rounded-lg overflow-hidden border border-[var(--border-color)] bg-white/[0.03]" aria-label="Language Switcher">
-                    <button id="lang-en" class="lang-btn active px-3 py-1.5 text-xs font-semibold font-heading tracking-wide border-none cursor-pointer transition-all duration-300" title="English">EN</button>
-                    <button id="lang-id" class="lang-btn px-3 py-1.5 text-xs font-semibold font-heading tracking-wide border-none cursor-pointer transition-all duration-300" title="Bahasa Indonesia">ID</button>
+                    <button id="lang-en" class="lang-btn active px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold font-heading tracking-wide border-none cursor-pointer transition-all duration-300" title="English">EN</button>
+                    <button id="lang-id" class="lang-btn px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold font-heading tracking-wide border-none cursor-pointer transition-all duration-300" title="Bahasa Indonesia">ID</button>
                 </div>
 
                 <!-- Theme Toggle -->
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                <button class="theme-toggle shrink-0" id="theme-toggle" aria-label="Toggle Theme">
                     <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
@@ -105,7 +105,7 @@
                 </button>
 
                 <!-- Hamburger (Mobile) -->
-                <div class="hamburger md:hidden cursor-pointer z-[1001]">
+                <div class="hamburger md:hidden cursor-pointer z-[1001] shrink-0">
                     <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
                     <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
                     <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
