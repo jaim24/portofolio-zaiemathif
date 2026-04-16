@@ -334,6 +334,42 @@ button:focus-visible {
     text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
 }
 
+/* Language Toggle */
+.lang-toggle {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.05em;
+}
+
+.lang-btn:hover {
+    color: var(--text-main);
+}
+
+.lang-btn.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+body.light-mode .lang-toggle {
+    border-color: #cbd5e1;
+    background: rgba(0, 0, 0, 0.02);
+}
+
 .nav-links {
     display: flex;
     list-style: none;

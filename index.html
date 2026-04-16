@@ -61,11 +61,17 @@
                 <span class="logo-text">ZA.</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#works">Works</a></li>
-                <li><a href="#journey">Journey</a></li>
-                <li><a href="#contact" class="btn btn-outline">Contact</a></li>
+                <li><a href="#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#education" data-i18n="nav.education">Education</a></li>
+                <li><a href="#works" data-i18n="nav.works">Works</a></li>
+                <li><a href="#journey" data-i18n="nav.journey">Journey</a></li>
+                <li><a href="#contact" class="btn btn-outline" data-i18n="nav.contact">Contact</a></li>
+                <li>
+                    <div class="lang-toggle" aria-label="Language Switcher">
+                        <button id="lang-en" class="lang-btn active" title="English">EN</button>
+                        <button id="lang-id" class="lang-btn" title="Bahasa Indonesia">ID</button>
+                    </div>
+                </li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
                         <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -93,16 +99,16 @@
     <section class="hero" id="home">
         <div class="container hero-container animate-on-scroll">
             <div class="hero-content">
-                <p class="greeting">Hi, I'm</p>
+                <p class="greeting" data-i18n="hero.greeting">Hi, I'm</p>
                 <h1 class="gradient-text">Zaiem Athif Syafiullah, S.Kom</h1>
-                <h2 class="role">Information Systems Graduate & IT Enthusiast.</h2>
-                <p class="hero-desc">
+                <h2 class="role" data-i18n="hero.role">Information Systems Graduate & IT Enthusiast.</h2>
+                <p class="hero-desc" data-i18n="hero.desc">
                     Fresh Graduate from Universitas Negeri Gorontalo focusing on web-based system development, database
                     management, and system analysis.
                 </p>
                 <div class="hero-actions">
-                    <a href="#works" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    <a href="#works" class="btn btn-primary" data-i18n="hero.btn.work">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary" data-i18n="hero.btn.touch">Get In Touch</a>
                     <a href="CV_ZaiemAthif.pdf" class="btn btn-glow" download title="Download CV Zaiem Athif">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" style="margin-right:8px">
@@ -110,7 +116,7 @@
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
-                        Download CV
+                        <span data-i18n="hero.btn.cv">Download CV</span>
                     </a>
                 </div>
             </div>
@@ -136,48 +142,48 @@
     <section class="about" id="about">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <p class="section-subtitle">01. About Me</p>
-                <h2 class="section-title">My Focus & Expertise</h2>
+                <p class="section-subtitle" data-i18n="about.subtitle">01. About Me</p>
+                <h2 class="section-title" data-i18n="about.title">My Focus & Expertise</h2>
             </div>
             <div class="about-content animate-on-scroll">
                 <div class="about-text">
-                    <p>I am a Fresh Graduate with a Bachelor's degree in Information Systems from Universitas Negeri
+                    <p data-i18n="about.p1">I am a Fresh Graduate with a Bachelor's degree in Information Systems from Universitas Negeri
                         Gorontalo. I am highly motivated to develop a career in the professional world, with a strong
                         interest in Information Technology, particularly in <strong>web-based system
                             development</strong>, <strong>database management</strong>, and <strong>system analysis and
                             design</strong>.</p>
-                    <p>During my studies, I became accustomed to working both independently and in teams, and I was
+                    <p data-i18n="about.p2">During my studies, I became accustomed to working both independently and in teams, and I was
                         active in campus organizations which honed my communication and time management skills. I am
                         committed to making a positive contribution through responsibility and a strong desire for
                         continuous learning.</p>
 
                     <div class="skills-container">
                         <div class="skill-category">
-                            <h3>Technical & IT</h3>
+                            <h3 data-i18n="about.skill1.title">Technical & IT</h3>
                             <div class="tags">
-                                <span>IT Support</span>
-                                <span>System Administration</span>
-                                <span>Microsoft Office</span>
-                                <span>Web Development</span>
+                                <span data-i18n="about.skill1.1">IT Support</span>
+                                <span data-i18n="about.skill1.2">System Administration</span>
+                                <span data-i18n="about.skill1.3">Microsoft Office</span>
+                                <span data-i18n="about.skill1.4">Web Development</span>
                             </div>
                         </div>
                         <div class="skill-category">
-                            <h3>Design & Media</h3>
+                            <h3 data-i18n="about.skill2.title">Design & Media</h3>
                             <div class="tags">
-                                <span>Photo Editor</span>
-                                <span>Photography</span>
-                                <span>Video Editing</span>
-                                <span>Graphic Design</span>
-                                <span>Poster Design</span>
+                                <span data-i18n="about.skill2.1">Photo Editor</span>
+                                <span data-i18n="about.skill2.2">Photography</span>
+                                <span data-i18n="about.skill2.3">Video Editing</span>
+                                <span data-i18n="about.skill2.4">Graphic Design</span>
+                                <span data-i18n="about.skill2.5">Poster Design</span>
                             </div>
                         </div>
                         <div class="skill-category">
-                            <h3>Soft Skills</h3>
+                            <h3 data-i18n="about.skill3.title">Soft Skills</h3>
                             <div class="tags">
-                                <span>Discipline</span>
-                                <span>Communication</span>
-                                <span>Time Management</span>
-                                <span>Teamwork</span>
+                                <span data-i18n="about.skill3.1">Discipline</span>
+                                <span data-i18n="about.skill3.2">Communication</span>
+                                <span data-i18n="about.skill3.3">Time Management</span>
+                                <span data-i18n="about.skill3.4">Teamwork</span>
                             </div>
                         </div>
                     </div>
@@ -190,17 +196,16 @@
     <section class="education" id="education">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <p class="section-subtitle">02. Academic Background</p>
-                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle" data-i18n="edu.subtitle">02. Academic Background</p>
+                <h2 class="section-title" data-i18n="edu.title">Education</h2>
             </div>
 
             <div class="edu-grid">
-                <!-- Education 1 -->
                 <div class="edu-card animate-on-scroll">
-                    <div class="edu-year">2019 - 2025</div>
-                    <h3 class="edu-degree">S1 - Information Systems</h3>
-                    <h4 class="edu-school">Gorontalo State University, Kota Gorontalo</h4>
-                    <p class="edu-desc">Graduated with a GPA of 3.49. Acquired strong foundations in system analysis,
+                    <div class="edu-year" data-i18n="edu.year">2019 - 2025</div>
+                    <h3 class="edu-degree" data-i18n="edu.degree">S1 - Information Systems</h3>
+                    <h4 class="edu-school" data-i18n="edu.school">Gorontalo State University, Kota Gorontalo</h4>
+                    <p class="edu-desc" data-i18n="edu.desc">Graduated with a GPA of 3.49. Acquired strong foundations in system analysis,
                         database management, and technical implementations.</p>
                 </div>
             </div>
@@ -211,10 +216,10 @@
     <section class="works" id="works">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <p class="section-subtitle">03. Selected Works</p>
-                <h2 class="section-title">Things I've Built</h2>
+                <p class="section-subtitle" data-i18n="works.subtitle">03. Selected Works</p>
+                <h2 class="section-title" data-i18n="works.title">Things I've Built</h2>
             </div>
-            <p class="works-desc animate-on-scroll">A showcase of functional web solutions focused on data accuracy,
+            <p class="works-desc animate-on-scroll" data-i18n="works.desc">A showcase of functional web solutions focused on data accuracy,
                 automation, and user experience.</p>
 
             <div class="works-grid">
@@ -231,11 +236,11 @@
                     </div>
                     <div class="project-content">
                         <div class="project-top">
-                            <span class="project-type">GIS Web App</span>
-                            <span class="project-status public">Featured Project</span>
+                            <span class="project-type" data-i18n="project1.type">GIS Web App</span>
+                            <span class="project-status public" data-i18n="project1.status">Featured Project</span>
                         </div>
-                        <h3 class="project-name">DisabilityCare - GIS Platform</h3>
-                        <p class="project-detail">A Geographic Information System (GIS) and data management platform
+                        <h3 class="project-name" data-i18n="project1.name">DisabilityCare - GIS Platform</h3>
+                        <p class="project-detail" data-i18n="project1.detail">A Geographic Information System (GIS) and data management platform
                             that enables volunteers and admins to track, map locations, and intelligently manage
                             targeted aid distribution for people with disabilities across Gorontalo City.</p>
                         <div class="project-tech">
@@ -258,11 +263,11 @@
                     </div>
                     <div class="project-content">
                         <div class="project-top">
-                            <span class="project-type">Official Website</span>
-                            <span class="project-status public">Live Project</span>
+                            <span class="project-type" data-i18n="project2.type">Official Website</span>
+                            <span class="project-status public" data-i18n="project2.status">Live Project</span>
                         </div>
-                        <h3 class="project-name">PAUD Damhil DWP UNG</h3>
-                        <p class="project-detail">A comprehensive school profile website designed specifically for PAUD Damhil DWP Universitas Negeri Gorontalo. Built to serve as a digital hub that improves institutional transparency, showcases active academic programs, and boosts parental engagement.</p>
+                        <h3 class="project-name" data-i18n="project2.name">PAUD Damhil DWP UNG</h3>
+                        <p class="project-detail" data-i18n="project2.detail">A comprehensive school profile website designed specifically for PAUD Damhil DWP Universitas Negeri Gorontalo. Built to serve as a digital hub that improves institutional transparency, showcases active academic programs, and boosts parental engagement.</p>
                         <div class="project-tech">
                             <span><i class="devicon-html5-plain colored"></i> HTML5</span>
                             <span><i class="devicon-css3-plain colored"></i> CSS3</span>
@@ -279,8 +284,8 @@
     <section class="journey" id="journey">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <p class="section-subtitle">04. Experience</p>
-                <h2 class="section-title">My Journey</h2>
+                <p class="section-subtitle" data-i18n="journey.subtitle">04. Experience</p>
+                <h2 class="section-title" data-i18n="journey.title">My Journey</h2>
             </div>
 
             <div class="timeline animate-on-scroll">
@@ -288,25 +293,21 @@
                 <div class="timeline-item">
                     <div class="timeline-header">
                         <div class="timeline-meta">
-                            <span class="year">2024 - 2025</span>
-                            <span class="type">Work</span>
+                            <span class="year" data-i18n="j1.year">2024 - 2025</span>
+                            <span class="type" data-i18n="j1.type">Work</span>
                         </div>
-                        <h4 class="timeline-role">Administrative Staff @ TK Damhil</h4>
+                        <h4 class="timeline-role" data-i18n="j1.role">Administrative Staff @ TK Damhil</h4>
                     </div>
                     <div class="timeline-body">
                         <ul class="experience-list">
-                            <li>Responsible for supporting daily administrative and operational tasks in Gorontalo City.
-                            </li>
-                            <li>Managed student data, prepared documents and reports, and ensured school activities ran
-                                efficiently.</li>
-                            <li>Managed tuition fees (SPP), including recording, reporting, and ensuring financial
-                                transparency.</li>
-                            <li>Provided technical IT support to teachers, including hardware troubleshooting, software
-                                assistance, and other digital needs.</li>
+                            <li data-i18n="j1.li1">Responsible for supporting daily administrative and operational tasks in Gorontalo City.</li>
+                            <li data-i18n="j1.li2">Managed student data, prepared documents and reports, and ensured school activities ran efficiently.</li>
+                            <li data-i18n="j1.li3">Managed tuition fees (SPP), including recording, reporting, and ensuring financial transparency.</li>
+                            <li data-i18n="j1.li4">Provided technical IT support to teachers, including hardware troubleshooting, software assistance, and other digital needs.</li>
                         </ul>
                         <div class="timeline-tags">
-                            <span>IT Support</span>
-                            <span>Administration</span>
+                            <span data-i18n="j1.tag1">IT Support</span>
+                            <span data-i18n="j1.tag2">Administration</span>
                         </div>
                     </div>
                 </div>
@@ -315,20 +316,19 @@
                 <div class="timeline-item">
                     <div class="timeline-header">
                         <div class="timeline-meta">
-                            <span class="year">2022</span>
-                            <span class="type">Internship</span>
+                            <span class="year" data-i18n="j2.year">2022</span>
+                            <span class="type" data-i18n="j2.type">Internship</span>
                         </div>
-                        <h4 class="timeline-role">Intern (MBKM) @ BKKBN Provinsi Gorontalo</h4>
+                        <h4 class="timeline-role" data-i18n="j2.role">Intern (MBKM) @ BKKBN Provinsi Gorontalo</h4>
                     </div>
                     <div class="timeline-body">
                         <ul class="experience-list">
-                            <li>Supported operational and administrative tasks at the BKKBN Provincial Representative
-                                office.</li>
-                            <li>Assisted in data processing and the implementation of BKKBN programs.</li>
+                            <li data-i18n="j2.li1">Supported operational and administrative tasks at the BKKBN Provincial Representative office.</li>
+                            <li data-i18n="j2.li2">Assisted in data processing and the implementation of BKKBN programs.</li>
                         </ul>
                         <div class="timeline-tags">
-                            <span>Data Processing</span>
-                            <span>Administration</span>
+                            <span data-i18n="j2.tag1">Data Processing</span>
+                            <span data-i18n="j2.tag2">Administration</span>
                         </div>
                     </div>
                 </div>
@@ -337,25 +337,25 @@
                 <div class="timeline-item">
                     <div class="timeline-header">
                         <div class="timeline-meta">
-                            <span class="year">2025</span>
-                            <span class="type">Training</span>
+                            <span class="year" data-i18n="j3.year">2025</span>
+                            <span class="type" data-i18n="j3.type">Training</span>
                         </div>
-                        <h4 class="timeline-role">Generative AI Certifications</h4>
+                        <h4 class="timeline-role" data-i18n="j3.role">Generative AI Certifications</h4>
                     </div>
                     <div class="timeline-body">
                         <ul class="experience-list">
-                            <li>Completed two professional courses on Udemy in Dec 2025:
+                            <li data-i18n="j3.li1">Completed two professional courses on Udemy in Dec 2025:
                                 <ul style="margin-left: 20px; margin-top: 5px;">
-                                    <li><strong>Artificial Intelligence Journey: Beginner to Pro</strong></li>
-                                    <li><strong>Complete Generative AI: Build Pro Web, Mobile & SaaS Apps</strong></li>
+                                    <li data-i18n="j3.li1a"><strong>Artificial Intelligence Journey: Beginner to Pro</strong></li>
+                                    <li data-i18n="j3.li1b"><strong>Complete Generative AI: Build Pro Web, Mobile & SaaS Apps</strong></li>
                                 </ul>
                             </li>
-                            <li style="margin-top: 10px;">Completed Information and Communication Technology Training at
+                            <li style="margin-top: 10px;" data-i18n="j3.li2">Completed Information and Communication Technology Training at
                                 Gorontalo State University (Aug 2019).</li>
                         </ul>
                         <div class="timeline-tags" style="margin-top: 20px;">
-                            <span>Generative AI</span>
-                            <span>SaaS</span>
+                            <span data-i18n="j3.tag1">Generative AI</span>
+                            <span data-i18n="j3.tag2">SaaS</span>
                         </div>
                     </div>
                 </div>
@@ -366,9 +366,9 @@
     <!-- Contact Section -->
     <section class="contact animate-on-scroll" id="contact">
         <div class="container contact-container">
-            <p class="section-subtitle">05. What's Next?</p>
-            <h2 class="contact-title">Let's Build Something Great</h2>
-            <p class="contact-desc">I am open to new opportunities and collaborations. Whether you have a project
+            <p class="section-subtitle" data-i18n="contact.subtitle">05. What's Next?</p>
+            <h2 class="contact-title" data-i18n="contact.title">Let's Build Something Great</h2>
+            <p class="contact-desc" data-i18n="contact.desc">I am open to new opportunities and collaborations. Whether you have a project
                 proposal, a question, or just want to connect, feel free to reach out!</p>
 
             <div class="contact-actions">
@@ -378,7 +378,7 @@
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                         <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
-                    Send an Email
+                    <span data-i18n="contact.btn.email">Send an Email</span>
                 </a>
 
                 <a href="https://wa.me/6289690783060" class="btn btn-secondary btn-large" target="_blank"
@@ -387,7 +387,7 @@
                         <path
                             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                     </svg>
-                    Chat on WhatsApp
+                    <span data-i18n="contact.btn.wa">Chat on WhatsApp</span>
                 </a>
             </div>
         </div>
@@ -422,12 +422,13 @@
                     </svg>
                 </a>
             </div>
-            <p>Designed & Built by <span class="accent-text">Zaiem Athif</span></p>
-            <p class="footer-copy">&copy; 2026 All Rights Reserved.</p>
+            <p data-i18n="footer.credit">Designed & Built by <span class="accent-text">Zaiem Athif</span></p>
+            <p class="footer-copy" data-i18n="footer.copy">© 2026 All Rights Reserved.</p>
         </div>
     </footer>
 
     <!-- Main JS -->
+    <script src="lang.js"></script>
     <script src="script.js"></script>
 </body>
 
