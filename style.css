@@ -409,73 +409,14 @@ body.light-mode .lang-toggle {
     }
 }
 
-/* =========================================
-   ABOUT SECTION
-   ========================================= */
-.about {
-    padding: 100px 0;
-}
-
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    max-width: 800px;
-}
-
-.about-text strong {
-    color: var(--text-main);
-}
-
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.skill-category h3 {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    color: var(--text-main);
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.tags span {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    transition: var(--transition);
-}
-
-.tags span, .project-tech span, .timeline-tags span {
+.project-tech span, .timeline-tags span {
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
 
-.tags span i, .project-tech span i, .timeline-tags span i {
+.project-tech span i, .timeline-tags span i {
     font-size: 1.15em;
-}
-
-.tags span:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
 }
 
 /* =========================================
