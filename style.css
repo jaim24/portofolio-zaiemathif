@@ -320,16 +320,18 @@ button:focus-visible {
     text-decoration: none;
 }
 
-.logo-img {
-    height: 42px;
-    width: auto;
-    border-radius: 8px;
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: var(--text-main);
     transition: var(--transition);
+    letter-spacing: -0.05em;
 }
 
-.logo-img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.15);
+.logo:hover .logo-text {
+    color: var(--accent);
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
 }
 
 .nav-links {
