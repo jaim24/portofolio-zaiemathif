@@ -179,7 +179,10 @@ x-init="$watch('theme', val => localStorage.setItem('theme', val))"
             <div class="relative flex justify-center mt-10 lg:mt-0">
                 <div class="relative p-[10px] bg-white/[0.03] backdrop-blur-[10px] border border-white/5 rounded-[40px_100px_40px_100px] transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_0_30px_rgba(96,165,250,0.1)] inline-block mx-auto">
                     <div class="glow-effect"></div>
-                    <img src="profile.jpg" alt="Zaiem Athif" class="w-[250px] h-[320px] md:w-[320px] md:h-[400px] object-cover rounded-[35px_95px_35px_95px] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] grayscale-[10%] contrast-[1.1] transition-all duration-300 hover:grayscale-0 hover:contrast-100 hover:scale-[1.02]">
+                    <picture>
+                        <source srcset="profile.jpg 1x, profile.jpg 2x" type="image/jpeg">
+                        <img src="profile.jpg" alt="Zaiem Athif" fetchpriority="high" loading="eager" class="w-[250px] h-[320px] md:w-[320px] md:h-[400px] object-cover rounded-[35px_95px_35px_95px] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] grayscale-[10%] contrast-[1.1] transition-all duration-300 hover:grayscale-0 hover:contrast-100 hover:scale-[1.02] bg-[rgba(255,255,255,0.05)]">
+                    </picture>
                     <div class="absolute flex items-center gap-[10px] bg-[var(--bg-card)] backdrop-blur-[16px] border border-[var(--border-color)] py-[12px] px-[22px] rounded-full text-[0.8rem] md:text-[0.85rem] font-semibold font-heading text-[var(--text-main)] shadow-[0_8px_32px_rgba(0,0,0,0.15)] z-10 transition-all duration-300 hover:-translate-y-[3px] hover:scale-105 hover:shadow-[0_12px_40px_var(--accent-glow)] hover:border-[var(--accent)] animate-[float_6s_ease-in-out_infinite] top-[10px] left-[-10px] lg:top-[30px] lg:left-[-50px] [animation-delay:0s]">
                         <i class="devicon-laravel-original colored text-[1.3rem]"></i>
                         <span>Laravel</span>
@@ -291,7 +294,10 @@ x-init="$watch('theme', val => localStorage.setItem('theme', val))"
                             <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
                             <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
                         </div>
-                        <img src="project1.jpg" alt="DisabilityCare GIS Platform" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                          <picture>
+                              <source srcset="project1.jpg 1x, project1.jpg 2x" type="image/jpeg">
+                              <img src="project1.jpg" alt="DisabilityCare GIS Platform" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 bg-[var(--border-color)]">
+                          </picture>
                     </div>
                     <div class="p-[35px]">
                         <div class="flex justify-between items-center mb-[20px]">
@@ -319,7 +325,10 @@ x-init="$watch('theme', val => localStorage.setItem('theme', val))"
                             <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
                             <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
                         </div>
-                        <img src="project2.jpg" alt="PAUD Damhil DWP UNG School Profile" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                          <picture>
+                              <source srcset="project2.jpg 1x, project2.jpg 2x" type="image/jpeg">
+                              <img src="project2.jpg" alt="PAUD Damhil DWP UNG School Profile" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 bg-[var(--border-color)]">
+                          </picture>
                     </div>
                     <div class="p-[35px]">
                         <div class="flex justify-between items-center mb-[20px]">
