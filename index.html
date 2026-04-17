@@ -60,7 +60,7 @@
     </script>
     <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
-
+    
     <!-- Alpine.js Plugins & Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -70,585 +70,435 @@
     theme: localStorage.getItem('theme') || 'dark', 
     scrolled: false, 
     mobileMenuOpen: false 
-}" x-init="$watch('theme', val => localStorage.setItem('theme', val))"
-    @scroll.window="scrolled = (window.pageYOffset > 50)" :class="theme === 'light' ? 'light-mode' : ''">
+}" 
+x-init="$watch('theme', val => localStorage.setItem('theme', val))"
+@scroll.window="scrolled = (window.pageYOffset > 50)"
+:class="theme === 'light' ? 'light-mode' : ''">
     <div class="overflow-x-hidden w-full relative min-h-screen">
         <!-- WCAG: Skip to main content link -->
         <a href="#home" class="skip-link">Skip to main content</a>
 
-        <!-- Noise Overlay for Premium Aesthetic -->
-        <div class="noise-overlay" aria-hidden="true"></div>
+    <!-- Noise Overlay for Premium Aesthetic -->
+    <div class="noise-overlay" aria-hidden="true"></div>
 
-        <!-- Grid Background & Aesthetic Ornaments -->
-        <div class="grid-bg"></div>
-        <div class="ornament shape-1"></div>
-        <div class="ornament shape-2"></div>
-        <div class="ornament shape-3"></div>
-        <div class="ornament shape-4"></div>
-        <div class="ornament shape-5"></div>
+    <!-- Grid Background & Aesthetic Ornaments -->
+    <div class="grid-bg"></div>
+    <div class="ornament shape-1"></div>
+    <div class="ornament shape-2"></div>
+    <div class="ornament shape-3"></div>
+    <div class="ornament shape-4"></div>
+    <div class="ornament shape-5"></div>
 
-        <!-- Navigation -->
-        <nav class="navbar w-full max-w-full" :class="{ 'scrolled': scrolled }" aria-label="Main Navigation">
-            <div class="w-full max-w-[1100px] mx-auto px-4 sm:px-6 flex items-center justify-between">
-                <!-- Logo -->
-                <a href="#" class="logo shrink-0" aria-label="Zaiem Athif - Home">
-                    <span class="logo-text">ZA.</span>
+    <!-- Navigation -->
+    <nav class="navbar w-full max-w-full" :class="{ 'scrolled': scrolled }" aria-label="Main Navigation">
+        <div class="w-full max-w-[1100px] mx-auto px-4 sm:px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="logo shrink-0" aria-label="Zaiem Athif - Home">
+                <span class="logo-text">ZA.</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <ul class="nav-links flex items-center gap-5 lg:gap-7 list-none" :class="{ 'active': mobileMenuOpen }">
+                <li><a href="#about"
+                        class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
+                        data-i18n="nav.about" @click="mobileMenuOpen = false">About</a></li>
+                <li><a href="#education"
+                        class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
+                        data-i18n="nav.education" @click="mobileMenuOpen = false">Education</a></li>
+                <li><a href="#works"
+                        class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
+                        data-i18n="nav.works" @click="mobileMenuOpen = false">Works</a></li>
+                <li><a href="#journey"
+                        class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
+                        data-i18n="nav.journey" @click="mobileMenuOpen = false">Journey</a></li>
+                <li><a href="#contact" class="btn btn-outline" data-i18n="nav.contact" @click="mobileMenuOpen = false">Contact</a></li>
+            </ul>
+
+            <!-- Actions: Lang + Theme + Hamburger -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <!-- Language Toggle -->
+                <div class="lang-toggle flex rounded-lg overflow-hidden border border-[var(--border-color)] bg-white/[0.03]"
+                    aria-label="Language Switcher">
+                    <button id="lang-en"
+                        class="lang-btn active px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold font-heading tracking-wide border-none cursor-pointer transition-all duration-300"
+                        title="English">EN</button>
+                    <button id="lang-id"
+                        class="lang-btn px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold font-heading tracking-wide border-none cursor-pointer transition-all duration-300"
+                        title="Bahasa Indonesia">ID</button>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button class="theme-toggle shrink-0" id="theme-toggle" aria-label="Toggle Theme" @click="theme = theme === 'dark' ? 'light' : 'dark'">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Hamburger (Mobile) -->
+                <div class="hamburger md:hidden cursor-pointer z-[1001] shrink-0" :class="{ 'active': mobileMenuOpen }" @click="mobileMenuOpen = !mobileMenuOpen">
+                    <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
+                    <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
+                    <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-[80px]" id="home">
+        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-[60px] items-center text-center lg:text-left animate-on-scroll">
+            <div class="hero-content">
+                <p class="text-[var(--accent)] text-[1.1rem] font-medium mb-[10px] font-heading" data-i18n="hero.greeting">Hi, I'm</p>
+                <h1 class="text-[2.2rem] md:text-[3.5rem] leading-[1.2] mb-[5px] tracking-[-0.02em] font-extrabold bg-gradient-to-br from-[var(--text-main)] to-[var(--accent)] text-transparent bg-clip-text">Zaiem Athif Syafiullah, S.Kom</h1>
+                <h2 class="text-[1.5rem] md:text-[2.2rem] text-[var(--text-muted)] mb-[25px]" data-i18n="hero.role">Information Systems Graduate & IT Enthusiast.</h2>
+                <p class="text-[1.1rem] text-[var(--text-muted)] max-w-[500px] mx-auto lg:mx-0 mb-[40px]" data-i18n="hero.desc">
+                    Fresh Graduate from Universitas Negeri Gorontalo focusing on web-based system development, database
+                    management, and system analysis.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-[15px] px-2.5 sm:px-0">
+                    <a href="#works" class="btn btn-primary" data-i18n="hero.btn.work">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary" data-i18n="hero.btn.touch">Get In Touch</a>
+                    <a href="CV_ZaiemAthif.pdf" class="btn btn-glow flex items-center justify-center text-center gap-2" download title="Download CV Zaiem Athif">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span data-i18n="hero.btn.cv">Download CV</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center mt-10 lg:mt-0">
+                <div class="relative p-[10px] bg-white/[0.03] backdrop-blur-[10px] border border-white/5 rounded-[40px_100px_40px_100px] transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_0_30px_rgba(96,165,250,0.1)] inline-block mx-auto">
+                    <div class="glow-effect"></div>
+                    <img src="profile.jpg" alt="Zaiem Athif" class="w-[250px] h-[320px] md:w-[320px] md:h-[400px] object-cover rounded-[35px_95px_35px_95px] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] grayscale-[10%] contrast-[1.1] transition-all duration-300 hover:grayscale-0 hover:contrast-100 hover:scale-[1.02]">
+                    <div class="absolute flex items-center gap-[10px] bg-[var(--bg-card)] backdrop-blur-[16px] border border-[var(--border-color)] py-[12px] px-[22px] rounded-full text-[0.8rem] md:text-[0.85rem] font-semibold font-heading text-[var(--text-main)] shadow-[0_8px_32px_rgba(0,0,0,0.15)] z-10 transition-all duration-300 hover:-translate-y-[3px] hover:scale-105 hover:shadow-[0_12px_40px_var(--accent-glow)] hover:border-[var(--accent)] animate-[float_6s_ease-in-out_infinite] top-[10px] left-[-10px] lg:top-[30px] lg:left-[-50px] [animation-delay:0s]">
+                        <i class="devicon-laravel-original colored text-[1.3rem]"></i>
+                        <span>Laravel</span>
+                    </div>
+                    <div class="absolute flex items-center gap-[10px] bg-[var(--bg-card)] backdrop-blur-[16px] border border-[var(--border-color)] py-[12px] px-[22px] rounded-full text-[0.8rem] md:text-[0.85rem] font-semibold font-heading text-[var(--text-main)] shadow-[0_8px_32px_rgba(0,0,0,0.15)] z-10 transition-all duration-300 hover:-translate-y-[3px] hover:scale-105 hover:shadow-[0_12px_40px_var(--accent-glow)] hover:border-[var(--accent)] animate-[float_6s_ease-in-out_infinite] bottom-[30px] right-[-10px] lg:bottom-[50px] lg:right-[-40px] [animation-delay:2s]">
+                        <i class="devicon-javascript-plain colored text-[1.3rem]"></i>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 md:py-[100px]" id="about">
+        <div class="max-w-[1100px] mx-auto px-6">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="section-header animate-on-scroll">
+                <p class="section-subtitle" data-i18n="about.subtitle">01. About Me</p>
+                <h2 class="section-title" data-i18n="about.title">My Focus & Expertise</h2>
+            </div>
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="grid grid-cols-1 gap-10 animate-on-scroll">
+                <div class="about-text">
+                    <p class="text-[1.1rem] text-[var(--text-muted)] mb-5 max-w-[800px] leading-relaxed" data-i18n="about.p1">I am a Fresh Graduate with a Bachelor's degree in Information Systems from
+                        Universitas Negeri
+                        Gorontalo. I am highly motivated to develop a career in the professional world, with a strong
+                        interest in Information Technology, particularly in <strong class="text-[var(--text-main)] font-semibold">web-based system
+                            development</strong>, <strong class="text-[var(--text-main)] font-semibold">database management</strong>, and <strong class="text-[var(--text-main)] font-semibold">system analysis and
+                            design</strong>.</p>
+                    <p class="text-[1.1rem] text-[var(--text-muted)] mb-5 max-w-[800px] leading-relaxed" data-i18n="about.p2">During my studies, I became accustomed to working both independently and in
+                        teams, and I was
+                        active in campus organizations which honed my communication and time management skills. I am
+                        committed to making a positive contribution through responsibility and a strong desire for
+                        continuous learning.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+                        <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-white/[0.04]">
+                            <h3 class="text-[1.1rem] mb-4 text-[var(--text-main)] font-heading font-semibold" data-i18n="about.skill1.title">Technical & IT</h3>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill1.1">IT Support</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill1.2">System Administration</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill1.3">Microsoft Office</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill1.4">Web Development</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-white/[0.04]">
+                            <h3 class="text-[1.1rem] mb-4 text-[var(--text-main)] font-heading font-semibold" data-i18n="about.skill2.title">Design & Media</h3>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill2.1">Photo Editor</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill2.2">Photography</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill2.3">Video Editing</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill2.4">Graphic Design</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill2.5">Poster Design</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-white/[0.04] md:col-span-2 lg:col-span-1">
+                            <h3 class="text-[1.1rem] mb-4 text-[var(--text-main)] font-heading font-semibold" data-i18n="about.skill3.title">Soft Skills</h3>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill3.1">Discipline</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill3.2">Communication</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill3.3">Time Management</span>
+                                <span class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5" data-i18n="about.skill3.4">Teamwork</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="py-20 md:py-[100px]" id="education">
+        <div class="max-w-[1100px] mx-auto px-6">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="section-header animate-on-scroll">
+                <p class="section-subtitle" data-i18n="edu.subtitle">02. Academic Background</p>
+                <h2 class="section-title" data-i18n="edu.title">Education</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-[30px]">
+                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] p-[35px] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.05)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
+                    <div class="inline-block font-heading text-[var(--accent)] bg-blue-500/10 py-1.5 px-3.5 rounded-full text-[0.85rem] mb-5 font-semibold" data-i18n="edu.year">2019 - 2025</div>
+                    <h3 class="text-[1.4rem] mb-2 text-[var(--text-main)] font-heading font-bold" data-i18n="edu.degree">S1 - Information Systems</h3>
+                    <h4 class="text-[1.1rem] text-[var(--text-muted)] font-normal mb-5 font-heading" data-i18n="edu.school">Gorontalo State University, Kota Gorontalo</h4>
+                    <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7]" data-i18n="edu.desc">Graduated with a GPA of 3.59. Acquired strong foundations
+                        in system analysis,
+                        database management, and technical implementations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works Section -->
+    <section class="py-20 md:py-[100px]" id="works">
+        <div class="max-w-[1100px] mx-auto px-6">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="section-header animate-on-scroll">
+                <p class="section-subtitle" data-i18n="works.subtitle">03. Selected Works</p>
+                <h2 class="section-title" data-i18n="works.title">Things I've Built</h2>
+            </div>
+            <p x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="text-[var(--text-muted)] text-[1.1rem] mb-[50px] max-w-[600px] animate-on-scroll" data-i18n="works.desc">A showcase of functional web solutions
+                focused on data accuracy,
+                automation, and user experience.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-[30px]">
+
+                <!-- Project 1 -->
+                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100">
+                    <div class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
+                        <div class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
+                        </div>
+                        <img src="project1.jpg" alt="DisabilityCare GIS Platform" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-[35px]">
+                        <div class="flex justify-between items-center mb-[20px]">
+                            <span class="text-[0.85rem] text-[var(--accent)] font-heading tracking-[0.05em] uppercase" data-i18n="project1.type">GIS Web App</span>
+                            <span class="text-[0.8rem] py-1 px-3 rounded-full font-bold bg-emerald-400/15 text-emerald-400" data-i18n="project1.status">Featured Project</span>
+                        </div>
+                        <h3 class="text-[1.6rem] mb-[15px] font-heading font-bold text-[var(--text-main)]" data-i18n="project1.name">DisabilityCare - GIS Platform</h3>
+                        <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7] mb-[25px]" data-i18n="project1.detail">A Geographic Information System (GIS) and
+                            data management platform
+                            that enables volunteers and admins to track, map locations, and intelligently manage
+                            targeted aid distribution for people with disabilities across Gorontalo City.</p>
+                        <div class="flex flex-wrap gap-4 font-heading text-[0.85rem] text-[var(--text-muted)]">
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-laravel-original colored text-[1.15em]"></i> Laravel</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-mysql-plain colored text-[1.15em]"></i> MySQL</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-tailwindcss-original colored text-[1.15em]"></i> Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100" style="transition-delay: 0.1s">
+                    <div class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
+                        <div class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
+                        </div>
+                        <img src="project2.jpg" alt="PAUD Damhil DWP UNG School Profile" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-[35px]">
+                        <div class="flex justify-between items-center mb-[20px]">
+                            <span class="text-[0.85rem] text-[var(--accent)] font-heading tracking-[0.05em] uppercase" data-i18n="project2.type">Official Website</span>
+                            <span class="text-[0.8rem] py-1 px-3 rounded-full font-bold bg-emerald-400/15 text-emerald-400" data-i18n="project2.status">Live Project</span>
+                        </div>
+                        <h3 class="text-[1.6rem] mb-[15px] font-heading font-bold text-[var(--text-main)]" data-i18n="project2.name">PAUD Damhil DWP UNG</h3>
+                        <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7] mb-[25px]" data-i18n="project2.detail">A comprehensive school profile website
+                            designed specifically for PAUD Damhil DWP Universitas Negeri Gorontalo. Built to serve as a
+                            digital hub that improves institutional transparency, showcases active academic programs,
+                            and boosts parental engagement.</p>
+                        <div class="flex flex-wrap gap-4 font-heading text-[0.85rem] text-[var(--text-muted)]">
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-html5-plain colored text-[1.15em]"></i> HTML5</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-css3-plain colored text-[1.15em]"></i> CSS3</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-javascript-plain colored text-[1.15em]"></i> JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="py-20 md:py-[100px]" id="journey">
+        <div class="max-w-[1100px] mx-auto px-6">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="section-header animate-on-scroll">
+                <p class="section-subtitle" data-i18n="journey.subtitle">04. Experience</p>
+                <h2 class="section-title" data-i18n="journey.title">My Journey</h2>
+            </div>
+
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="flex flex-col gap-5 max-w-[800px] animate-on-scroll">
+                <!-- Item 1 -->
+                <div class="group bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden relative transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] [.light-mode_&]:border-[#e2e8f0] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
+                    <div class="p-5 md:py-[25px] md:px-[30px] flex flex-col md:flex-row md:items-center bg-[var(--bg-card)] gap-2.5 md:gap-0">
+                        <div class="flex flex-col min-w-[120px]">
+                            <span class="font-heading text-[1.2rem] font-bold text-[var(--accent)]" data-i18n="j1.year">2024 - 2025</span>
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] uppercase tracking-[0.05em]" data-i18n="j1.type">Work</span>
+                        </div>
+                        <h4 class="text-[1.2rem] font-bold grow" data-i18n="j1.role">Administrative Staff @ TK Damhil</h4>
+                    </div>
+                    <div class="p-[15px_20px_20px_20px] md:p-[20px_30px_25px_150px] border-t border-[var(--border-color)] bg-black/20">
+                        <ul class="text-[var(--text-muted)] text-[0.95rem] mb-[20px] pl-0 list-none">
+                            <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j1.li1">Responsible for supporting daily administrative and operational tasks
+                                in Gorontalo City.</li>
+                            <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j1.li2">Managed student data, prepared documents and reports, and ensured
+                                school activities ran efficiently.</li>
+                            <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j1.li3">Managed tuition fees (SPP), including recording, reporting, and
+                                ensuring financial transparency.</li>
+                            <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j1.li4">Provided technical IT support to teachers, including hardware
+                                troubleshooting, software assistance, and other digital needs.</li>
+                        </ul>
+                        <div class="flex gap-2.5 flex-wrap">
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5" data-i18n="j1.tag1">IT Support</span>
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5" data-i18n="j1.tag2">Administration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="group bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden relative transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] [.light-mode_&]:border-[#e2e8f0] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
+                    <div class="p-5 md:py-[25px] md:px-[30px] flex flex-col md:flex-row md:items-center bg-[var(--bg-card)] gap-2.5 md:gap-0">
+                        <div class="flex flex-col min-w-[120px]">
+                            <span class="font-heading text-[1.2rem] font-bold text-[var(--accent)]" data-i18n="j2.year">2022</span>
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] uppercase tracking-[0.05em]" data-i18n="j2.type">Internship</span>
+                        </div>
+                        <h4 class="text-[1.2rem] font-bold grow" data-i18n="j2.role">Intern (MBKM) @ BKKBN Provinsi Gorontalo</h4>
+                    </div>
+                    <div class="p-[15px_20px_20px_20px] md:p-[20px_30px_25px_150px] border-t border-[var(--border-color)] bg-black/20">
+                        <ul class="text-[var(--text-muted)] text-[0.95rem] mb-[20px] pl-0 list-none">
+                            <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j2.li1">Supported operational and administrative tasks at the BKKBN
+                                Provincial Representative office.</li>
+                            <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j2.li2">Assisted in data processing and the implementation of BKKBN programs.
+                            </li>
+                        </ul>
+                        <div class="flex gap-2.5 flex-wrap">
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5" data-i18n="j2.tag1">Data Processing</span>
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5" data-i18n="j2.tag2">Administration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="group bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden relative transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] [.light-mode_&]:border-[#e2e8f0] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
+                    <div class="p-5 md:py-[25px] md:px-[30px] flex flex-col md:flex-row md:items-center bg-[var(--bg-card)] gap-2.5 md:gap-0">
+                        <div class="flex flex-col min-w-[120px]">
+                            <span class="font-heading text-[1.2rem] font-bold text-[var(--accent)]" data-i18n="j3.year">2025</span>
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] uppercase tracking-[0.05em]" data-i18n="j3.type">Training</span>
+                        </div>
+                        <h4 class="text-[1.2rem] font-bold grow" data-i18n="j3.role">Generative AI Certifications</h4>
+                    </div>
+                    <div class="p-[15px_20px_20px_20px] md:p-[20px_30px_25px_150px] border-t border-[var(--border-color)] bg-black/20">
+                        <ul class="text-[var(--text-muted)] text-[0.95rem] mb-[20px] pl-0 list-none">
+                            <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j3.li1">Completed two professional courses on Udemy in Dec 2025:
+                                <ul class="ml-5 mt-1.5 list-none">
+                                    <li class="mb-1.5 relative pl-[15px] leading-[1.7] before:content-['•'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j3.li1a"><strong>Artificial Intelligence Journey: Beginner to
+                                            Pro</strong></li>
+                                    <li class="mb-1.5 relative pl-[15px] leading-[1.7] before:content-['•'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j3.li1b"><strong>Complete Generative AI: Build Pro Web, Mobile & SaaS
+                                            Apps</strong></li>
+                                </ul>
+                            </li>
+                            <li class="mb-2.5 mt-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold" data-i18n="j3.li2">Completed Information and Communication
+                                Technology Training at
+                                Gorontalo State University (Aug 2019).</li>
+                        </ul>
+                        <div class="flex gap-2.5 flex-wrap mt-[20px]">
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5" data-i18n="j3.tag1">Generative AI</span>
+                            <span class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5" data-i18n="j3.tag2">SaaS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="py-[80px] md:py-[120px] text-center animate-on-scroll" id="contact">
+        <div class="max-w-[600px] mx-auto px-6">
+            <p class="section-subtitle" data-i18n="contact.subtitle">05. What's Next?</p>
+            <h2 class="text-[2rem] md:text-[3rem] font-heading font-bold mb-[20px]" data-i18n="contact.title">Let's Build Something Great</h2>
+            <p class="text-[var(--text-muted)] text-[1.1rem] mb-[40px]" data-i18n="contact.desc">I am open to new opportunities and collaborations. Whether
+                you have a project
+                proposal, a question, or just want to connect, feel free to reach out!</p>
+
+            <div class="flex justify-center gap-[20px] flex-wrap">
+                <a href="mailto:zaiem.athifsyafiullah@gmail.com" class="btn btn-primary btn-large">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-right:10px">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span data-i18n="contact.btn.email">Send an Email</span>
                 </a>
 
-                <!-- Desktop Nav Links (now Universal Mobile-Style Drawer) -->
-                <ul class="nav-links list-none" :class="{ 'active': mobileMenuOpen }">
-                    <li><a href="#about" data-i18n="nav.about" @click="mobileMenuOpen = false">About</a></li>
-                    <li><a href="#education" data-i18n="nav.education" @click="mobileMenuOpen = false">Education</a>
-                    </li>
-                    <li><a href="#works" data-i18n="nav.works" @click="mobileMenuOpen = false">Works</a></li>
-                    <li><a href="#journey" data-i18n="nav.journey" @click="mobileMenuOpen = false">Journey</a></li>
-                    <li><a href="#contact" class="btn btn-outline" data-i18n="nav.contact"
-                            @click="mobileMenuOpen = false">Contact</a></li>
-                </ul>
-
-                <!-- Actions: Lang + Theme + Hamburger -->
-                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                    <!-- Language Toggle -->
-                    <div class="lang-toggle flex rounded-lg overflow-hidden border border-[var(--border-color)] bg-white/[0.03]"
-                        aria-label="Language Switcher">
-                        <button id="lang-en"
-                            class="lang-btn active px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold font-heading tracking-wide border-none cursor-pointer transition-all duration-300"
-                            title="English">EN</button>
-                        <button id="lang-id"
-                            class="lang-btn px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold font-heading tracking-wide border-none cursor-pointer transition-all duration-300"
-                            title="Bahasa Indonesia">ID</button>
-                    </div>
-
-                    <!-- Theme Toggle -->
-                    <button class="theme-toggle shrink-0" id="theme-toggle" aria-label="Toggle Theme"
-                        @click="theme = theme === 'dark' ? 'light' : 'dark'">
-                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path
-                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-                            </path>
-                        </svg>
-                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path
-                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Hamburger (Universal) -->
-                    <div class="hamburger cursor-pointer z-[1001] shrink-0" :class="{ 'active': mobileMenuOpen }"
-                        @click="mobileMenuOpen = !mobileMenuOpen">
-                        <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300">
-                        </div>
-                        <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300">
-                        </div>
-                        <div class="bar w-[25px] h-[2px] bg-[var(--text-main)] my-[5px] transition-all duration-300">
-                        </div>
-                    </div>
-                </div>
+                <a href="https://wa.me/6289690783060" class="btn btn-secondary btn-large" target="_blank"
+                    rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-right:10px">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    <span data-i18n="contact.btn.wa">Chat on WhatsApp</span>
+                </a>
             </div>
-        </nav>
+        </div>
+    </section>
 
-        <!-- Hero Section -->
-        <section class="min-h-screen flex items-center pt-[80px]" id="home">
-            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                class="max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-[60px] items-center text-center lg:text-left animate-on-scroll">
-                <div class="hero-content">
-                    <p class="text-[var(--accent)] text-[1.1rem] font-medium mb-[10px] font-heading"
-                        data-i18n="hero.greeting">Hi, I'm</p>
-                    <h1
-                        class="text-[2.2rem] md:text-[3.5rem] leading-[1.2] mb-[5px] tracking-[-0.02em] font-extrabold bg-gradient-to-br from-[var(--text-main)] to-[var(--accent)] text-transparent bg-clip-text">
-                        Zaiem Athif Syafiullah, S.Kom</h1>
-                    <h2 class="text-[1.5rem] md:text-[2.2rem] text-[var(--text-muted)] mb-[25px]" data-i18n="hero.role">
-                        Information Systems Graduate & IT Enthusiast.</h2>
-                    <p class="text-[1.1rem] text-[var(--text-muted)] max-w-[500px] mx-auto lg:mx-0 mb-[40px]"
-                        data-i18n="hero.desc">
-                        Fresh Graduate from Universitas Negeri Gorontalo focusing on web-based system development,
-                        database
-                        management, and system analysis.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-[15px] px-2.5 sm:px-0">
-                        <a href="#works" class="btn btn-primary" data-i18n="hero.btn.work">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary" data-i18n="hero.btn.touch">Get In Touch</a>
-                        <a href="CV_ZaiemAthif.pdf"
-                            class="btn btn-glow flex items-center justify-center text-center gap-2" download
-                            title="Download CV Zaiem Athif">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                            <span data-i18n="hero.btn.cv">Download CV</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="relative flex justify-center mt-10 lg:mt-0">
-                    <div
-                        class="relative p-[10px] bg-white/[0.03] backdrop-blur-[10px] border border-white/5 rounded-[40px_100px_40px_100px] transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_0_30px_rgba(96,165,250,0.1)] inline-block mx-auto">
-                        <div class="glow-effect"></div>
-                        <img src="profile.jpg" alt="Zaiem Athif"
-                            class="w-[250px] h-[320px] md:w-[320px] md:h-[400px] object-cover rounded-[35px_95px_35px_95px] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] grayscale-[10%] contrast-[1.1] transition-all duration-300 hover:grayscale-0 hover:contrast-100 hover:scale-[1.02]">
-                        <div
-                            class="absolute flex items-center gap-[10px] bg-[var(--bg-card)] backdrop-blur-[16px] border border-[var(--border-color)] py-[12px] px-[22px] rounded-full text-[0.8rem] md:text-[0.85rem] font-semibold font-heading text-[var(--text-main)] shadow-[0_8px_32px_rgba(0,0,0,0.15)] z-10 transition-all duration-300 hover:-translate-y-[3px] hover:scale-105 hover:shadow-[0_12px_40px_var(--accent-glow)] hover:border-[var(--accent)] animate-[float_6s_ease-in-out_infinite] top-[10px] left-[-10px] lg:top-[30px] lg:left-[-50px] [animation-delay:0s]">
-                            <i class="devicon-laravel-original colored text-[1.3rem]"></i>
-                            <span>Laravel</span>
-                        </div>
-                        <div
-                            class="absolute flex items-center gap-[10px] bg-[var(--bg-card)] backdrop-blur-[16px] border border-[var(--border-color)] py-[12px] px-[22px] rounded-full text-[0.8rem] md:text-[0.85rem] font-semibold font-heading text-[var(--text-main)] shadow-[0_8px_32px_rgba(0,0,0,0.15)] z-10 transition-all duration-300 hover:-translate-y-[3px] hover:scale-105 hover:shadow-[0_12px_40px_var(--accent-glow)] hover:border-[var(--accent)] animate-[float_6s_ease-in-out_infinite] bottom-[30px] right-[-10px] lg:bottom-[50px] lg:right-[-40px] [animation-delay:2s]">
-                            <i class="devicon-javascript-plain colored text-[1.3rem]"></i>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- Footer -->
+    <footer class="py-[40px] border-t border-[var(--border-color)] text-center [.light-mode_&]:border-[#e2e8f0]">
+        <div class="flex flex-col gap-[15px] items-center mx-auto max-w-[1100px] px-6">
+            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="flex gap-[20px] mb-[20px] animate-on-scroll">
+                <a href="https://linkedin.com/in/" class="text-[var(--text-muted)] transition-all flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white/[0.03] border border-[var(--border-color)] hover:text-blue-500 hover:-translate-y-1 hover:bg-blue-500/10 hover:border-blue-500/40 hover:shadow-[0_10px_20px_rgba(59,130,246,0.2)] [.light-mode_&]:bg-black/[0.03] [.light-mode_&]:border-[#e2e8f0] [.light-mode_&]:hover:bg-blue-500/10 [.light-mode_&]:hover:border-blue-500/30 [.light-mode_&]:hover:shadow-[0_10px_20px_rgba(59,130,246,0.12)]" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="https://github.com/" class="text-[var(--text-muted)] transition-all flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white/[0.03] border border-[var(--border-color)] hover:text-blue-500 hover:-translate-y-1 hover:bg-blue-500/10 hover:border-blue-500/40 hover:shadow-[0_10px_20px_rgba(59,130,246,0.2)] [.light-mode_&]:bg-black/[0.03] [.light-mode_&]:border-[#e2e8f0] [.light-mode_&]:hover:bg-blue-500/10 [.light-mode_&]:hover:border-blue-500/30 [.light-mode_&]:hover:shadow-[0_10px_20px_rgba(59,130,246,0.12)]" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
+                </a>
+                <a href="https://instagram.com/" class="text-[var(--text-muted)] transition-all flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white/[0.03] border border-[var(--border-color)] hover:text-blue-500 hover:-translate-y-1 hover:bg-blue-500/10 hover:border-blue-500/40 hover:shadow-[0_10px_20px_rgba(59,130,246,0.2)] [.light-mode_&]:bg-black/[0.03] [.light-mode_&]:border-[#e2e8f0] [.light-mode_&]:hover:bg-blue-500/10 [.light-mode_&]:hover:border-blue-500/30 [.light-mode_&]:hover:shadow-[0_10px_20px_rgba(59,130,246,0.12)]" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
             </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="py-20 md:py-[100px]" id="about">
-            <div class="max-w-[1100px] mx-auto px-6">
-                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                    class="section-header animate-on-scroll">
-                    <p class="section-subtitle" data-i18n="about.subtitle">01. About Me</p>
-                    <h2 class="section-title" data-i18n="about.title">My Focus & Expertise</h2>
-                </div>
-                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                    class="grid grid-cols-1 gap-10 animate-on-scroll">
-                    <div class="about-text">
-                        <p class="text-[1.1rem] text-[var(--text-muted)] mb-5 max-w-[800px] leading-relaxed"
-                            data-i18n="about.p1">I am a Fresh Graduate with a Bachelor's degree in Information Systems
-                            from
-                            Universitas Negeri
-                            Gorontalo. I am highly motivated to develop a career in the professional world, with a
-                            strong
-                            interest in Information Technology, particularly in <strong
-                                class="text-[var(--text-main)] font-semibold">web-based system
-                                development</strong>, <strong class="text-[var(--text-main)] font-semibold">database
-                                management</strong>, and <strong class="text-[var(--text-main)] font-semibold">system
-                                analysis and
-                                design</strong>.</p>
-                        <p class="text-[1.1rem] text-[var(--text-muted)] mb-5 max-w-[800px] leading-relaxed"
-                            data-i18n="about.p2">During my studies, I became accustomed to working both independently
-                            and in
-                            teams, and I was
-                            active in campus organizations which honed my communication and time management skills. I am
-                            committed to making a positive contribution through responsibility and a strong desire for
-                            continuous learning.</p>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-                            <div
-                                class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-white/[0.04]">
-                                <h3 class="text-[1.1rem] mb-4 text-[var(--text-main)] font-heading font-semibold"
-                                    data-i18n="about.skill1.title">Technical & IT</h3>
-                                <div class="flex flex-wrap gap-2.5">
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill1.1">IT Support</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill1.2">System Administration</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill1.3">Microsoft Office</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill1.4">Web Development</span>
-                                </div>
-                            </div>
-                            <div
-                                class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-white/[0.04]">
-                                <h3 class="text-[1.1rem] mb-4 text-[var(--text-main)] font-heading font-semibold"
-                                    data-i18n="about.skill2.title">Design & Media</h3>
-                                <div class="flex flex-wrap gap-2.5">
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill2.1">Photo Editor</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill2.2">Photography</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill2.3">Video Editing</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill2.4">Graphic Design</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill2.5">Poster Design</span>
-                                </div>
-                            </div>
-                            <div
-                                class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:border-[var(--accent)]/30 hover:bg-white/[0.04] md:col-span-2 lg:col-span-1">
-                                <h3 class="text-[1.1rem] mb-4 text-[var(--text-main)] font-heading font-semibold"
-                                    data-i18n="about.skill3.title">Soft Skills</h3>
-                                <div class="flex flex-wrap gap-2.5">
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill3.1">Discipline</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill3.2">Communication</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill3.3">Time Management</span>
-                                    <span
-                                        class="inline-flex items-center gap-1.5 bg-[var(--bg-card)] border border-[var(--border-color)] py-2 px-4 rounded-md text-[0.9rem] text-[var(--text-muted)] transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:-translate-y-0.5"
-                                        data-i18n="about.skill3.4">Teamwork</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section class="py-20 md:py-[100px]" id="education">
-            <div class="max-w-[1100px] mx-auto px-6">
-                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                    class="section-header animate-on-scroll">
-                    <p class="section-subtitle" data-i18n="edu.subtitle">02. Academic Background</p>
-                    <h2 class="section-title" data-i18n="edu.title">Education</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-[30px]">
-                    <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                        class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] p-[35px] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.05)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
-                        <div class="inline-block font-heading text-[var(--accent)] bg-blue-500/10 py-1.5 px-3.5 rounded-full text-[0.85rem] mb-5 font-semibold"
-                            data-i18n="edu.year">2019 - 2025</div>
-                        <h3 class="text-[1.4rem] mb-2 text-[var(--text-main)] font-heading font-bold"
-                            data-i18n="edu.degree">S1 - Information Systems</h3>
-                        <h4 class="text-[1.1rem] text-[var(--text-muted)] font-normal mb-5 font-heading"
-                            data-i18n="edu.school">Gorontalo State University, Kota Gorontalo</h4>
-                        <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7]" data-i18n="edu.desc">Graduated
-                            with a GPA of 3.59. Acquired strong foundations
-                            in system analysis,
-                            database management, and technical implementations.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Works Section -->
-        <section class="py-20 md:py-[100px]" id="works">
-            <div class="max-w-[1100px] mx-auto px-6">
-                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                    class="section-header animate-on-scroll">
-                    <p class="section-subtitle" data-i18n="works.subtitle">03. Selected Works</p>
-                    <h2 class="section-title" data-i18n="works.title">Things I've Built</h2>
-                </div>
-                <p x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                    class="text-[var(--text-muted)] text-[1.1rem] mb-[50px] max-w-[600px] animate-on-scroll"
-                    data-i18n="works.desc">A showcase of functional web solutions
-                    focused on data accuracy,
-                    automation, and user experience.</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-[30px]">
-
-                    <!-- Project 1 -->
-                    <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                        class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100">
-                        <div
-                            class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
-                            <div
-                                class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
-                                <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
-                                <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
-                                <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
-                            </div>
-                            <img src="project1.jpg" alt="DisabilityCare GIS Platform"
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        </div>
-                        <div class="p-[35px]">
-                            <div class="flex justify-between items-center mb-[20px]">
-                                <span
-                                    class="text-[0.85rem] text-[var(--accent)] font-heading tracking-[0.05em] uppercase"
-                                    data-i18n="project1.type">GIS Web App</span>
-                                <span
-                                    class="text-[0.8rem] py-1 px-3 rounded-full font-bold bg-emerald-400/15 text-emerald-400"
-                                    data-i18n="project1.status">Featured Project</span>
-                            </div>
-                            <h3 class="text-[1.6rem] mb-[15px] font-heading font-bold text-[var(--text-main)]"
-                                data-i18n="project1.name">DisabilityCare - GIS Platform</h3>
-                            <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7] mb-[25px]"
-                                data-i18n="project1.detail">A Geographic Information System (GIS) and
-                                data management platform
-                                that enables volunteers and admins to track, map locations, and intelligently manage
-                                targeted aid distribution for people with disabilities across Gorontalo City.</p>
-                            <div class="flex flex-wrap gap-4 font-heading text-[0.85rem] text-[var(--text-muted)]">
-                                <span class="inline-flex items-center gap-1.5"><i
-                                        class="devicon-laravel-original colored text-[1.15em]"></i> Laravel</span>
-                                <span class="inline-flex items-center gap-1.5"><i
-                                        class="devicon-mysql-plain colored text-[1.15em]"></i> MySQL</span>
-                                <span class="inline-flex items-center gap-1.5"><i
-                                        class="devicon-tailwindcss-original colored text-[1.15em]"></i> Tailwind</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                        class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100"
-                        style="transition-delay: 0.1s">
-                        <div
-                            class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
-                            <div
-                                class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
-                                <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
-                                <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
-                                <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
-                            </div>
-                            <img src="project2.jpg" alt="PAUD Damhil DWP UNG School Profile"
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        </div>
-                        <div class="p-[35px]">
-                            <div class="flex justify-between items-center mb-[20px]">
-                                <span
-                                    class="text-[0.85rem] text-[var(--accent)] font-heading tracking-[0.05em] uppercase"
-                                    data-i18n="project2.type">Official Website</span>
-                                <span
-                                    class="text-[0.8rem] py-1 px-3 rounded-full font-bold bg-emerald-400/15 text-emerald-400"
-                                    data-i18n="project2.status">Live Project</span>
-                            </div>
-                            <h3 class="text-[1.6rem] mb-[15px] font-heading font-bold text-[var(--text-main)]"
-                                data-i18n="project2.name">PAUD Damhil DWP UNG</h3>
-                            <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7] mb-[25px]"
-                                data-i18n="project2.detail">A comprehensive school profile website
-                                designed specifically for PAUD Damhil DWP Universitas Negeri Gorontalo. Built to serve
-                                as a
-                                digital hub that improves institutional transparency, showcases active academic
-                                programs,
-                                and boosts parental engagement.</p>
-                            <div class="flex flex-wrap gap-4 font-heading text-[0.85rem] text-[var(--text-muted)]">
-                                <span class="inline-flex items-center gap-1.5"><i
-                                        class="devicon-html5-plain colored text-[1.15em]"></i> HTML5</span>
-                                <span class="inline-flex items-center gap-1.5"><i
-                                        class="devicon-css3-plain colored text-[1.15em]"></i> CSS3</span>
-                                <span class="inline-flex items-center gap-1.5"><i
-                                        class="devicon-javascript-plain colored text-[1.15em]"></i> JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Journey Section -->
-        <section class="py-20 md:py-[100px]" id="journey">
-            <div class="max-w-[1100px] mx-auto px-6">
-                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                    class="section-header animate-on-scroll">
-                    <p class="section-subtitle" data-i18n="journey.subtitle">04. Experience</p>
-                    <h2 class="section-title" data-i18n="journey.title">My Journey</h2>
-                </div>
-
-                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                    class="flex flex-col gap-5 max-w-[800px] animate-on-scroll">
-                    <!-- Item 1 -->
-                    <div
-                        class="group bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden relative transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] [.light-mode_&]:border-[#e2e8f0] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
-                        <div
-                            class="p-5 md:py-[25px] md:px-[30px] flex flex-col md:flex-row md:items-center bg-[var(--bg-card)] gap-2.5 md:gap-0">
-                            <div class="flex flex-col min-w-[120px]">
-                                <span class="font-heading text-[1.2rem] font-bold text-[var(--accent)]"
-                                    data-i18n="j1.year">2024 - 2025</span>
-                                <span class="text-[0.8125rem] text-[var(--text-muted)] uppercase tracking-[0.05em]"
-                                    data-i18n="j1.type">Work</span>
-                            </div>
-                            <h4 class="text-[1.2rem] font-bold grow" data-i18n="j1.role">Administrative Staff @ TK
-                                Damhil</h4>
-                        </div>
-                        <div
-                            class="p-[15px_20px_20px_20px] md:p-[20px_30px_25px_150px] border-t border-[var(--border-color)] bg-black/20">
-                            <ul class="text-[var(--text-muted)] text-[0.95rem] mb-[20px] pl-0 list-none">
-                                <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                    data-i18n="j1.li1">Responsible for supporting daily administrative and operational
-                                    tasks
-                                    in Gorontalo City.</li>
-                                <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                    data-i18n="j1.li2">Managed student data, prepared documents and reports, and ensured
-                                    school activities ran efficiently.</li>
-                                <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                    data-i18n="j1.li3">Managed tuition fees (SPP), including recording, reporting, and
-                                    ensuring financial transparency.</li>
-                                <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                    data-i18n="j1.li4">Provided technical IT support to teachers, including hardware
-                                    troubleshooting, software assistance, and other digital needs.</li>
-                            </ul>
-                            <div class="flex gap-2.5 flex-wrap">
-                                <span
-                                    class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5"
-                                    data-i18n="j1.tag1">IT Support</span>
-                                <span
-                                    class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5"
-                                    data-i18n="j1.tag2">Administration</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div
-                        class="group bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden relative transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] [.light-mode_&]:border-[#e2e8f0] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
-                        <div
-                            class="p-5 md:py-[25px] md:px-[30px] flex flex-col md:flex-row md:items-center bg-[var(--bg-card)] gap-2.5 md:gap-0">
-                            <div class="flex flex-col min-w-[120px]">
-                                <span class="font-heading text-[1.2rem] font-bold text-[var(--accent)]"
-                                    data-i18n="j2.year">2022</span>
-                                <span class="text-[0.8125rem] text-[var(--text-muted)] uppercase tracking-[0.05em]"
-                                    data-i18n="j2.type">Internship</span>
-                            </div>
-                            <h4 class="text-[1.2rem] font-bold grow" data-i18n="j2.role">Intern (MBKM) @ BKKBN Provinsi
-                                Gorontalo</h4>
-                        </div>
-                        <div
-                            class="p-[15px_20px_20px_20px] md:p-[20px_30px_25px_150px] border-t border-[var(--border-color)] bg-black/20">
-                            <ul class="text-[var(--text-muted)] text-[0.95rem] mb-[20px] pl-0 list-none">
-                                <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                    data-i18n="j2.li1">Supported operational and administrative tasks at the BKKBN
-                                    Provincial Representative office.</li>
-                                <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                    data-i18n="j2.li2">Assisted in data processing and the implementation of BKKBN
-                                    programs.
-                                </li>
-                            </ul>
-                            <div class="flex gap-2.5 flex-wrap">
-                                <span
-                                    class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5"
-                                    data-i18n="j2.tag1">Data Processing</span>
-                                <span
-                                    class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5"
-                                    data-i18n="j2.tag2">Administration</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div
-                        class="group bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden relative transition-all duration-300 hover:border-blue-400/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] [.light-mode_&]:border-[#e2e8f0] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 group-hover:before:scale-x-100">
-                        <div
-                            class="p-5 md:py-[25px] md:px-[30px] flex flex-col md:flex-row md:items-center bg-[var(--bg-card)] gap-2.5 md:gap-0">
-                            <div class="flex flex-col min-w-[120px]">
-                                <span class="font-heading text-[1.2rem] font-bold text-[var(--accent)]"
-                                    data-i18n="j3.year">2025</span>
-                                <span class="text-[0.8125rem] text-[var(--text-muted)] uppercase tracking-[0.05em]"
-                                    data-i18n="j3.type">Training</span>
-                            </div>
-                            <h4 class="text-[1.2rem] font-bold grow" data-i18n="j3.role">Generative AI Certifications
-                            </h4>
-                        </div>
-                        <div
-                            class="p-[15px_20px_20px_20px] md:p-[20px_30px_25px_150px] border-t border-[var(--border-color)] bg-black/20">
-                            <ul class="text-[var(--text-muted)] text-[0.95rem] mb-[20px] pl-0 list-none">
-                                <li class="mb-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                    data-i18n="j3.li1">Completed two professional courses on Udemy in Dec 2025:
-                                    <ul class="ml-5 mt-1.5 list-none">
-                                        <li class="mb-1.5 relative pl-[15px] leading-[1.7] before:content-['•'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                            data-i18n="j3.li1a"><strong>Artificial Intelligence Journey: Beginner to
-                                                Pro</strong></li>
-                                        <li class="mb-1.5 relative pl-[15px] leading-[1.7] before:content-['•'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                            data-i18n="j3.li1b"><strong>Complete Generative AI: Build Pro Web, Mobile &
-                                                SaaS
-                                                Apps</strong></li>
-                                    </ul>
-                                </li>
-                                <li class="mb-2.5 mt-2.5 relative pl-[15px] leading-[1.7] before:content-['→'] before:text-[var(--accent)] before:absolute before:left-[-5px] before:top-0 before:font-bold"
-                                    data-i18n="j3.li2">Completed Information and Communication
-                                    Technology Training at
-                                    Gorontalo State University (Aug 2019).</li>
-                            </ul>
-                            <div class="flex gap-2.5 flex-wrap mt-[20px]">
-                                <span
-                                    class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5"
-                                    data-i18n="j3.tag1">Generative AI</span>
-                                <span
-                                    class="text-[0.8125rem] text-[var(--text-muted)] bg-[var(--bg-dark)] py-1 px-3 rounded-full border border-[var(--border-color)] inline-flex items-center gap-1.5"
-                                    data-i18n="j3.tag2">SaaS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-            class="py-[80px] md:py-[120px] text-center animate-on-scroll" id="contact">
-            <div class="max-w-[600px] mx-auto px-6">
-                <p class="section-subtitle" data-i18n="contact.subtitle">05. What's Next?</p>
-                <h2 class="text-[2rem] md:text-[3rem] font-heading font-bold mb-[20px]" data-i18n="contact.title">Let's
-                    Build Something Great</h2>
-                <p class="text-[var(--text-muted)] text-[1.1rem] mb-[40px]" data-i18n="contact.desc">I am open to new
-                    opportunities and collaborations. Whether
-                    you have a project
-                    proposal, a question, or just want to connect, feel free to reach out!</p>
-
-                <div class="flex justify-center gap-[20px] flex-wrap">
-                    <a href="mailto:zaiem.athifsyafiullah@gmail.com" class="btn btn-primary btn-large">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:10px">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <span data-i18n="contact.btn.email">Send an Email</span>
-                    </a>
-
-                    <a href="https://wa.me/6289690783060" class="btn btn-secondary btn-large" target="_blank"
-                        rel="noopener noreferrer">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-right:10px">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                        <span data-i18n="contact.btn.wa">Chat on WhatsApp</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-[40px] border-t border-[var(--border-color)] text-center [.light-mode_&]:border-[#e2e8f0]">
-            <div class="flex flex-col gap-[15px] items-center mx-auto max-w-[1100px] px-6">
-                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''"
-                    class="flex gap-[20px] mb-[20px] animate-on-scroll">
-                    <a href="https://linkedin.com/in/"
-                        class="text-[var(--text-muted)] transition-all flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white/[0.03] border border-[var(--border-color)] hover:text-blue-500 hover:-translate-y-1 hover:bg-blue-500/10 hover:border-blue-500/40 hover:shadow-[0_10px_20px_rgba(59,130,246,0.2)] [.light-mode_&]:bg-black/[0.03] [.light-mode_&]:border-[#e2e8f0] [.light-mode_&]:hover:bg-blue-500/10 [.light-mode_&]:hover:border-blue-500/30 [.light-mode_&]:hover:shadow-[0_10px_20px_rgba(59,130,246,0.12)]"
-                        aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                            </path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                    <a href="https://github.com/"
-                        class="text-[var(--text-muted)] transition-all flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white/[0.03] border border-[var(--border-color)] hover:text-blue-500 hover:-translate-y-1 hover:bg-blue-500/10 hover:border-blue-500/40 hover:shadow-[0_10px_20px_rgba(59,130,246,0.2)] [.light-mode_&]:bg-black/[0.03] [.light-mode_&]:border-[#e2e8f0] [.light-mode_&]:hover:bg-blue-500/10 [.light-mode_&]:hover:border-blue-500/30 [.light-mode_&]:hover:shadow-[0_10px_20px_rgba(59,130,246,0.12)]"
-                        aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                            </path>
-                        </svg>
-                    </a>
-                    <a href="https://instagram.com/"
-                        class="text-[var(--text-muted)] transition-all flex items-center justify-center w-[45px] h-[45px] rounded-full bg-white/[0.03] border border-[var(--border-color)] hover:text-blue-500 hover:-translate-y-1 hover:bg-blue-500/10 hover:border-blue-500/40 hover:shadow-[0_10px_20px_rgba(59,130,246,0.2)] [.light-mode_&]:bg-black/[0.03] [.light-mode_&]:border-[#e2e8f0] [.light-mode_&]:hover:bg-blue-500/10 [.light-mode_&]:hover:border-blue-500/30 [.light-mode_&]:hover:shadow-[0_10px_20px_rgba(59,130,246,0.12)]"
-                        aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                </div>
-                <p class="font-heading text-[var(--text-main)] text-[0.95rem]" data-i18n="footer.credit">Designed &
-                    Built by <span class="text-[var(--accent)]">Zaiem Athif</span></p>
-                <p class="text-[var(--text-muted)] font-body text-[0.85rem]" data-i18n="footer.copy">© 2026 All Rights
-                    Reserved.</p>
-            </div>
-        </footer>
+            <p class="font-heading text-[var(--text-main)] text-[0.95rem]" data-i18n="footer.credit">Designed & Built by <span class="text-[var(--accent)]">Zaiem Athif</span></p>
+            <p class="text-[var(--text-muted)] font-body text-[0.85rem]" data-i18n="footer.copy">© 2026 All Rights Reserved.</p>
+        </div>
+    </footer>
 
     </div>
     <!-- Main JS -->
