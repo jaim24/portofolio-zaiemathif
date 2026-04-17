@@ -648,3 +648,17 @@ body.light-mode .btn-glow {
 body.light-mode footer {
     border-top: 1px solid #e2e8f0;
 }
+
+/* =========================================
+   LANGUAGE SWITCH ANIMATION
+   ========================================= */
+[data-i18n] {
+    transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out, transform 0.2s ease-out;
+}
+
+.lang-switching {
+    opacity: 0 !important;
+    filter: blur(4px);
+    transform: translateY(2px);
+}
+

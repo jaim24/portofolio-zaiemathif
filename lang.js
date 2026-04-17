@@ -215,37 +215,63 @@ const translations = {
 };
 
 // ---- Language Engine ----
+let isSwitchingLang = false;
+
 function setLanguage(lang) {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            // Use innerHTML for keys that contain HTML tags
-            if (translations[lang][key].includes('<')) {
-                el.innerHTML = translations[lang][key];
-            } else {
-                el.textContent = translations[lang][key];
-            }
-        }
-    });
-
-    // Update html lang attribute
-    document.documentElement.lang = lang === 'id' ? 'id' : 'en';
-
-    // Update active state on toggle
-    const btnEn = document.getElementById('lang-en');
-    const btnId = document.getElementById('lang-id');
-    if (btnEn && btnId) {
-        btnEn.classList.toggle('active', lang === 'en');
-        btnId.classList.toggle('active', lang === 'id');
+    if (isSwitchingLang) return;
+    
+    // Skip animation if already on the selected language after initial load
+    if (document.documentElement.lang === lang && document.body.dataset.langLoaded) {
+        return;
     }
+    
+    isSwitchingLang = true;
+    document.body.dataset.langLoaded = 'true';
+    
+    const elements = document.querySelectorAll('[data-i18n]');
+    
+    // 1. Fade out current texts
+    elements.forEach(el => el.classList.add('lang-switching'));
 
-    // Save preference
-    localStorage.setItem('preferred-lang', lang);
+    // 2. Wait for fade out, swap text, then fade in
+    setTimeout(() => {
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                // Use innerHTML for keys that contain HTML tags
+                if (translations[lang][key].includes('<')) {
+                    el.innerHTML = translations[lang][key];
+                } else {
+                    el.textContent = translations[lang][key];
+                }
+            }
+            // Remove class to fade back in
+            el.classList.remove('lang-switching');
+        });
+
+        // Update html lang attribute
+        document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+
+        // Update active state on toggle buttons
+        const btnEn = document.getElementById('lang-en');
+        const btnId = document.getElementById('lang-id');
+        if (btnEn && btnId) {
+            btnEn.classList.toggle('active', lang === 'en');
+            btnId.classList.toggle('active', lang === 'id');
+        }
+
+        // Save preference
+        localStorage.setItem('preferred-lang', lang);
+        
+        isSwitchingLang = false;
+    }, 200);
 }
 
 // Initialize on page load
 function initLanguage() {
     const saved = localStorage.getItem('preferred-lang') || 'en';
+    // On first load, we don't want an animation delay if possible, but the setTimeout 
+    // is fast enough (200ms) that it acts as a nice entrance animation for the text.
     setLanguage(saved);
 
     // Attach event listeners
@@ -256,3 +282,4 @@ function initLanguage() {
 }
 
 document.addEventListener('DOMContentLoaded', initLanguage);
+
