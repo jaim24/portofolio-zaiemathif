@@ -98,7 +98,7 @@ x-init="$watch('theme', val => localStorage.setItem('theme', val))"
             </a>
 
             <!-- Desktop Nav Links -->
-            <ul class="nav-links hidden md:flex items-center gap-5 lg:gap-7 list-none" :class="{ 'active': mobileMenuOpen }">
+            <ul class="nav-links flex items-center gap-5 lg:gap-7 list-none" :class="{ 'active': mobileMenuOpen }">
                 <li><a href="#about"
                         class="text-[var(--text-muted)] hover:text-[var(--accent)] text-[0.95rem] font-medium transition-all duration-300 no-underline"
                         data-i18n="nav.about" @click="mobileMenuOpen = false">About</a></li>
