@@ -63,6 +63,11 @@ const translations = {
         "project2.status": "Live Project",
         "project2.name": "PAUD Damhil DWP UNG",
         "project2.detail": "A comprehensive school profile website designed specifically for PAUD Damhil DWP Universitas Negeri Gorontalo. Built to serve as a digital hub that improves institutional transparency, showcases active academic programs, and boosts parental engagement.",
+        // Project 3
+        "project3.type": "Fullstack Web App",
+        "project3.status": "Personal Project",
+        "project3.name": "School Admin Dashboard",
+        "project3.detail": "Built a School Admin Dashboard using React, TypeScript, Vite, Tailwind CSS, and Supabase to streamline school administration. Features include login, student data management, incoming/outgoing letters, inventory, tuition payment, transaction history, file uploads, real-time statistics, and report export (Excel/PDF).",
 
         // Journey
         "journey.subtitle": "04. Experience",
@@ -168,6 +173,11 @@ const translations = {
         "project2.status": "Proyek Aktif",
         "project2.name": "PAUD Damhil DWP UNG",
         "project2.detail": "Website profil sekolah komprehensif yang dirancang khusus untuk PAUD Damhil DWP Universitas Negeri Gorontalo. Dibangun sebagai pusat informasi digital yang meningkatkan transparansi institusi, menampilkan program akademik aktif, dan mendorong keterlibatan orang tua.",
+        // Project 3
+        "project3.type": "Aplikasi Web Fullstack",
+        "project3.status": "Proyek Personal",
+        "project3.name": "School Admin Dashboard",
+        "project3.detail": "Membangun aplikasi School Admin Dashboard berbasis React, TypeScript, Vite, Tailwind CSS, dan Supabase untuk membantu administrasi sekolah. Aplikasi memiliki fitur login, manajemen data siswa, manajemen surat masuk/keluar, inventaris sarana prasarana, pembayaran SPP, riwayat transaksi, upload file surat, dashboard statistik real-time, serta export laporan ke Excel dan PDF.",
 
         // Journey
         "journey.subtitle": "04. Pengalaman",

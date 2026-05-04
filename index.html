@@ -348,6 +348,34 @@ x-init="$watch('theme', val => localStorage.setItem('theme', val))"
                     </div>
                 </div>
 
+                <!-- Project 3 -->
+                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'is-visible' : ''" class="group relative overflow-hidden bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-400/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] [.light-mode_&]:shadow-[0_2px_12px_rgba(0,0,0,0.06)] [.light-mode_&]:hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] animate-on-scroll before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-[var(--accent)] before:origin-left before:scale-x-0 before:transition-transform before:duration-400 before:z-10 group-hover:before:scale-x-100" style="transition-delay: 0.2s">
+                    <div class="w-full h-[220px] overflow-hidden relative border-b border-[var(--border-color)] [.light-mode_&]:border-[#e2e8f0] pt-[26px] bg-[#111111] [.light-mode_&]:bg-[#f8fafc]">
+                        <div class="absolute top-0 left-0 w-full h-[26px] bg-[#1e1e1e] [.light-mode_&]:bg-[#e2e8f0] border-b border-[var(--border-color)] flex items-center px-3 gap-1.5 z-[5]">
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ff5f56]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#ffbd2e]"></span>
+                            <span class="w-[9px] h-[9px] rounded-full bg-[#27c93f]"></span>
+                        </div>
+                          <picture>
+                              <source srcset="project3.png 1x, project3.png 2x" type="image/png">
+                              <img src="project3.png" alt="School Admin Dashboard" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 bg-[var(--border-color)]">
+                          </picture>
+                    </div>
+                    <div class="p-[35px]">
+                        <div class="flex justify-between items-center mb-[20px]">
+                            <span class="text-[0.85rem] text-[var(--accent)] font-heading tracking-[0.05em] uppercase" data-i18n="project3.type">Fullstack Web App</span>
+                            <span class="text-[0.8rem] py-1 px-3 rounded-full font-bold bg-emerald-400/15 text-emerald-400" data-i18n="project3.status">Personal Project</span>
+                        </div>
+                        <h3 class="text-[1.6rem] mb-[15px] font-heading font-bold text-[var(--text-main)]" data-i18n="project3.name">School Admin Dashboard</h3>
+                        <p class="text-[var(--text-muted)] text-[0.95rem] leading-[1.7] mb-[25px]" data-i18n="project3.detail">Built a School Admin Dashboard using React, TypeScript, Vite, Tailwind CSS, and Supabase to streamline school administration. Features include login, student data management, incoming/outgoing letters, inventory, tuition payment, transaction history, file uploads, real-time statistics, and report export (Excel/PDF).</p>
+                        <div class="flex flex-wrap gap-4 font-heading text-[0.85rem] text-[var(--text-muted)]">
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-react-original colored text-[1.15em]"></i> React</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-typescript-plain colored text-[1.15em]"></i> TypeScript</span>
+                            <span class="inline-flex items-center gap-1.5"><i class="devicon-supabase-plain colored text-[1.15em]"></i> Supabase</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
