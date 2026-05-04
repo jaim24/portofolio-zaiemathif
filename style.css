@@ -148,26 +148,6 @@ body {
     opacity: 0.2;
 }
 
-.shape-4 {
-    width: 500px;
-    height: 500px;
-    background: #f43f5e; /* Rose hue */
-    top: 2900px;
-    right: 5%;
-    animation-delay: -7s;
-    opacity: 0.15;
-}
-
-.shape-5 {
-    width: 450px;
-    height: 450px;
-    background: #3b82f6; /* Blue hue */
-    top: 4000px;
-    left: -5%;
-    animation-delay: -2s;
-    opacity: 0.2;
-}
-
 @keyframes drift {
     0% { transform: scale(1) translate(0, 0); }
     33% { transform: scale(1.1) translate(40px, -60px); }
@@ -661,4 +641,141 @@ body.light-mode footer {
     filter: blur(4px);
     transform: translateY(2px);
 }
+/* =========================================
+   ENHANCEMENT CSS (Animasi, Hover, Hero, dll)
+   ========================================= */
 
+/* --- 2. Identitas Warna --- */
+:root {
+    --accent: #2563eb; /* Primary Accent - Royal Blue */
+    --secondary-accent: #8b5cf6; /* Secondary - Professional Purple */
+    --accent-glow: rgba(37, 99, 235, 0.4);
+}
+
+body.light-mode {
+    --accent: #2563eb;
+    --secondary-accent: #8b5cf6;
+}
+
+.section-subtitle {
+    color: var(--secondary-accent) !important;
+}
+
+/* --- 3. Hover Effect pada Project Card --- */
+#works .group {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+#works .group:hover {
+    transform: scale(1.03) translateY(-5px) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+    border-color: var(--secondary-accent) !important;
+}
+
+body.light-mode #works .group:hover {
+    box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Overlay tombol "View Project" saat di-hover */
+#works .group .relative.border-b::after {
+    content: "View Project";
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}
+
+#works .group:hover .relative.border-b::after {
+    opacity: 1;
+}
+
+/* --- 4. Hero Section Enhancement --- */
+.hero-content h1 {
+    font-weight: 900 !important;
+    font-size: clamp(2.5rem, 5vw, 4.2rem) !important; 
+    line-height: 1.1 !important;
+}
+
+/* Typing animation untuk subtitle */
+.hero-content h2 {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--accent);
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    max-width: fit-content;
+}
+
+/* Matikan typing animation di mobile agar teks bisa wrap ke baris baru */
+@media (max-width: 768px) {
+    .hero-content h2 {
+        white-space: normal;
+        border-right: none;
+        animation: none;
+    }
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent); }
+}
+
+/* Foto profil lebih besar + frame melingkar */
+.hero-content + div picture img {
+    width: 340px !important;
+    height: 340px !important;
+    border-radius: 50% !important; /* Membuat bulat sempurna */
+    border: 4px solid transparent;
+    background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box, 
+                linear-gradient(135deg, var(--accent), var(--secondary-accent)) border-box;
+    padding: 8px;
+    object-fit: cover;
+}
+
+/* CTA Button lebih kontras */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--secondary-accent)) !important;
+    border: none !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+    color: #fff !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 10px 25px var(--accent-glow) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+}
+
+/* --- 5. Navbar Active State (Scroll Spy) --- */
+.nav-links a.active-link {
+    color: var(--accent) !important;
+    position: relative;
+    font-weight: 600;
+}
+
+.nav-links a.active-link::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--accent-glow);
+}

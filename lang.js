@@ -47,7 +47,7 @@ const translations = {
         "edu.year": "2019 - 2025",
         "edu.degree": "S1 - Information Systems",
         "edu.school": "Gorontalo State University, Kota Gorontalo",
-        "edu.desc": "Graduated with a GPA of 3.49. Acquired strong foundations in system analysis, database management, and technical implementations.",
+        "edu.desc": "Graduated with a GPA of 3.59. Acquired strong foundations in system analysis, database management, and technical implementations.",
 
         // Works
         "works.subtitle": "03. Selected Works",
@@ -157,7 +157,7 @@ const translations = {
         "edu.year": "2019 - 2025",
         "edu.degree": "S1 - Sistem Informasi",
         "edu.school": "Universitas Negeri Gorontalo, Kota Gorontalo",
-        "edu.desc": "Lulus dengan IPK 3,49. Memperoleh fondasi yang kuat dalam analisis sistem, manajemen basis data, dan implementasi teknis.",
+        "edu.desc": "Lulus dengan IPK 3,59. Memperoleh fondasi yang kuat dalam analisis sistem, manajemen basis data, dan implementasi teknis.",
 
         // Works
         "works.subtitle": "03. Karya Pilihan",
